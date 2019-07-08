@@ -1,0 +1,42 @@
+{
+    "accounts": [
+      {
+        "id": 1,
+        "account": 98765,
+        "name": "Correntista da Silva",
+        "password": "123456",
+        "balance": 120.00,
+        "email": "correntista@email.com",
+        "created": "2018-10-31"
+      },
+      {
+        "id": 2,
+        "account": 56789,
+        "name": "Poupador de Almeida",
+        "password": "98765",
+        "balance": 1500.00,
+        "email": "poupador@email.com",
+        "created": "2019-01-31"
+      }
+    ],
+    "logs": [
+        {
+            "id":1,
+            "account": 98765,
+            "message": "Valor transferido com sucesso",
+            "type": "transfer",
+            "created": "2019-07-07",
+            "desAccount": 56789,
+            "value": 15.00
+        },
+        {
+            "id":2,
+            "account": 56789,
+            "message": "Valor transferido com sucesso",
+            "type": "transfer",
+            "created": "2019-07-08",
+            "desAccount": 98765,
+            "value": 15.00
+        }
+    ]
+}
