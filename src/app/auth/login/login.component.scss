@@ -1,0 +1,139 @@
+.image-container {
+    height: 100%;
+    background: url(https://media.brstatic.com/2018/03/12103326/want-save-money-on-paper-checks-skip-bank.jpg) no-repeat center top fixed;
+    // https://ix-cdn.brightedge.com/images/43431/43431_1e46749714f941a2a8eb326fa1ab7439_1505352510.jpg
+    // https://backgrounddownload.com/wp-content/uploads/2018/09/banking-background-images-1.jpg
+    background-size: cover;
+    // opacity: 0.8;
+    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.2);
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > .content-container {
+        display: flex;
+        width: 1200px;
+        justify-content: space-between;
+        padding-left: 70px;
+        padding-right: 70px;
+        // align-items: flex-start;
+
+        > .info-container {
+            text-align: justify;
+            padding: 10px;
+            box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.3);
+            width: 65%;
+            color: black;
+            // text-shadow: 1px 0px 0px #000;
+            font-weight: bold;
+            // max-height: 100%;
+        }
+
+        > .form-container {
+            width: 350px;
+            // height: 350px;
+            box-shadow: 1px 1px 12px 0px #888888;
+            background-color: white;
+
+            .div-navbar {
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                padding: .5rem 1rem;
+            }
+            
+            .div-navbar.-active {
+                background-color: white;
+            }
+
+            .navbar {
+                padding: 0px;
+                margin-bottom: 30px;
+            }
+
+            .form-login {
+                padding: 10px 22px;
+            }
+            
+            .form-group {
+                display: flex;
+                align-items: center;
+            }
+
+            .icon {
+                display: block;
+                position: absolute;
+                text-indent: -9999px;
+                height: 15px;
+                // cursor: pointer;
+                opacity: 0.5;
+                float: right;
+                right: 0;
+                z-index: 3;
+                transition: opacity 200ms linear;
+                transform: translateY(75%) translateX(-100%);
+            }
+            
+            .bank-input {
+                border-radius: 0;
+                border: none;
+                border-bottom: 1px solid #948f8f;
+            }
+            
+            input {
+                border-color: none !important;
+                outline: 0;
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+            }
+            
+            .control-numbers {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            
+            .numbers {
+                margin: 0px 0px 12px 0px;
+            }
+            
+            .btn {
+                width: 90px;
+                height: 45px;
+                transition: all 100ms linear;
+            }
+            
+            .btn:active {
+                transform: scale(.9);
+            }
+            .btnDelete {
+                background-color: red;
+                border-color: red;
+            }
+            
+            .btnSubmit {
+                // width: 100%;
+                background-color: green;
+                border-color: green;
+            }
+
+            .forgot-password {
+                width: 70%;
+                padding-left: 18px;
+            }
+        }
+    }
+}
+
+input:disabled {
+    background-color: inherit;
+}
+
+@media screen and (max-height: 600px) {
+    .image-container {
+        height: 600px;
+    }
+}

@@ -1,0 +1,69 @@
+<div class="image-container">
+    <app-header></app-header>
+    <div class="login-container">
+        <div class="content-container">
+            <div class="info-container">
+                <h1>SAIBA COMO USAR</h1>
+    
+                <p>Em seu primeiro acesso crie um Usuário e uma Senha Internet na opção CADASTRAR. Os dados (nome, CPF e data de nascimento) devem ser informados conforme cadastro na Receita Federal. Dessa forma você estará apto para consultar saldo, extrato da conta ou extrato de compras com cartão de débito.</p>
+                <p>Para realizar transações financeiras é necessário cadastrar a assinatura eletrônica e o dispositivo a ser utilizado.</p>
+                <p>A assinatura eletrônica pode ser cadastrada no próprio Internet Banking CAIXA na opção Configurar Acesso > Consultar contas, caso o cartão da sua conta possua chip. Após o cadastramento você deve desbloqueá-la em um de nossos Caixas Eletrônicos, na opção Outros Serviços > Outros Serviços > Senhas e validações de acesso > Desbloqueio de assinatura eletrônica.</p>
+            </div>
+            <div class="form-container">
+                <nav class="navbar navbar-light bg-light">
+                    <div class="div-navbar -active">
+                        <a class="navbar-brand" href="#">Login</a>
+                    </div>
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button> -->
+                    <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-item nav-link" href="#">Features</a>
+                            <a class="nav-item nav-link" href="#">Pricing</a>
+                            <a class="nav-item nav-link disabled" href="#">Disabled</a>
+                        </div>
+                    </div> -->
+                    <div class="div-navbar">
+                        <a class="navbar-brand" href="#">Cadastro</a>
+                    </div>
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button> -->
+                </nav>
+                <form class="form-login">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input placeholder="Digite seu usuário" autocomplete="username" type="text" id="username" class="bank-input form-control text-muted">
+                            <i class="icon fa fa-user"></i>
+                        </div>    
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input placeholder="******" autocomplete="password" type="text" id="password" class="bank-input form-control text-muted" disabled>
+                            <i class="icon fa fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-numbers">
+                            <div class="numbers" *ngFor="let randomNumber of randomNumbers">
+                                <button class="btn btn-primary">{{randomNumber.first}} ou {{randomNumber.second}}</button>                                
+                            </div>
+                            <div class="numbers">
+                                <button class="btnDelete btn btn-primary">DEL</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btnSubmit btn btn-primary">Enviar</button>
+                        <small class="forgot-password">Esqueceu sua senha? <br><a href="password/forgot">Clique aqui</a> para redefinir.</small>
+                    </div>
+                    <!-- <div class="form-group">
+                        <button class="btnSubmit btn btn-primary" type="button">Entrar</button>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
