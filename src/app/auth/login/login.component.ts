@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { generateKeyboardNumbers } from 'src/utils/utils';
 
 @Component({
     selector: 'app-login',
@@ -8,6 +9,8 @@ import { Router } from '@angular/router';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+    randomNumbers: Array<number> = [];
 
     constructor(private authService: AuthService,
         private router: Router) { }
@@ -18,6 +21,9 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
+        let minValue = 0;
+        let maxValue = 9;
+        this.randomNumbers = generateKeyboardNumbers(minValue, maxValue);
         this.login();
     }
 

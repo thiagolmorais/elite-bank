@@ -1,0 +1,19 @@
+.header {
+    height: 70px;
+    display: flex;
+    // width: 1200px;
+    justify-content: center;
+    align-items: center;
+
+    > .header-container {
+        display: flex;
+        justify-content: space-between;
+        width: 1200px;
+        padding-left: 50px;
+        padding-right: 50px;
+
+        > .logo {
+            color: white;
+        }
+    }
+}
