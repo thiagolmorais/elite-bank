@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
         let minValue = 0;
         let maxValue = 9;
         this.randomNumbers = generateKeyboardNumbers(minValue, maxValue);
-        this.login();
     }
 
     login() {
