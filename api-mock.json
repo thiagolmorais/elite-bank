@@ -25,6 +25,12 @@
       "destination": 56789,
       "value": "100",
       "id": 1
+    },
+    {
+      "origin": 98765,
+      "destination": 56789,
+      "value": "150",
+      "id": 2
     }
   ]
 }

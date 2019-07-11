@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../account.service';
-import { DestAccount } from '../typings/DestAccount';
-import { Account } from '../typings/Account';
+import { TransferService } from '../transfer.service';
+import { DestAccount } from '../../typings/DestAccount';
+import { Account } from '../../typings/Account';
 
 @Component({
   selector: 'app-transfer',
@@ -33,19 +33,19 @@ export class TransferComponent implements OnInit {
 
   transferValue = null;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private transferService: TransferService) { }
   
   ngOnInit() {
   }
 
   checkDestAccount() {
-    this.accountService.destAccount(this.destAccountNumber).subscribe((destAccount: DestAccount) => {
+    this.transferService.destAccount(this.destAccountNumber).subscribe((destAccount: DestAccount) => {
       this.destAccount = destAccount
     });
   }
 
   transfer() {
-    this.accountService.transferValue(this.account.account, this.destAccount.account, this.transferValue).subscribe(() => {
+    this.transferService.transferValue(this.account.account, this.destAccount.account, this.transferValue).subscribe(() => {
       alert ('Valor transferido com sucesso');
     })
   }
