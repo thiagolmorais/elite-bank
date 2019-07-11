@@ -17,10 +17,6 @@ export class AccountService {
     console.log("Conta destino: " + destAccountNumber)
     console.log("Valor da transferencia: " + transferValue)
 
-     /*
-      TODO: Implementar chamada para API de transferência 
-     */
-
-    return this.httpClient.post('http://localhost:3000/accounts/' + originAccountNumber + "/transfers/", { destAccountNumber, transferValue });
+    return this.httpClient.post('http://localhost:3000/transfer/', {origin: originAccountNumber, destination: destAccountNumber, value: transferValue });
   }
 }
