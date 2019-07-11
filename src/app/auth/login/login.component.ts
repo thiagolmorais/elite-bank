@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { generateKeyboardNumbers } from 'src/utils/utils';
-import { Login, Password } from 'src/model/login';
+import { Login } from 'src/model/login';
 
 @Component({
     selector: 'app-login',
@@ -11,7 +11,7 @@ import { Login, Password } from 'src/model/login';
 })
 export class LoginComponent implements OnInit {
 
-    randomNumbers: Password[] = [];
+    randomNumbers: Array<number> = [];
     loginData: Login = { account: null, password: [] };
     password: String = "";
 
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         console.log(this.randomNumbers)
     }
 
-    addPasswordNumber(randomNumber: Password) {
+    addPasswordNumber(randomNumber: number) {
         if (this.loginData.password.length < 6) {
             this.loginData.password.push(randomNumber);
             this.password += "0";

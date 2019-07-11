@@ -1,5 +1,3 @@
-import { Password } from 'src/model/login';
-
 // import { Injectable } from '@angular/core';
 
 // @Injectable()
@@ -18,8 +16,8 @@ export const generateRandomNumber = (minValue: number, maxValue: number, notVali
     return notValidNumbers.includes(randomNumber) ? generateRandomNumber(minValue, maxValue, notValidNumbers) : randomNumber;
 };
 
-export const generateKeyboardNumbers = (minValue: number, maxValue: number): Password[] => {
-    let arrayReturn: Password[] = [];
+export const generateKeyboardNumbers = (minValue: number, maxValue: number): Array<number> => {
+    let arrayReturn = [];
     let notValidNumbers = [];
     let keyboardLength = 5;
 
@@ -28,11 +26,8 @@ export const generateKeyboardNumbers = (minValue: number, maxValue: number): Pas
         notValidNumbers.push(first);
         let second = generateRandomNumber(minValue, maxValue, notValidNumbers);
         notValidNumbers.push(second);
-
-        arrayReturn.push({
-            firstNumber: first,
-            secondNumber: second
-        });
+        let array = [first, second];
+        arrayReturn.push(array);
     }
 
     return arrayReturn;
