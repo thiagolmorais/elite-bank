@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
     login() {
         this.dataLoading = true;
         this.authService.login(this.loginData.account, this.loginData.password)
-<<<<<<< HEAD
             .subscribe((response: any) => {
                 
                 const { account, balance, name, token } = response;
@@ -57,12 +56,6 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('balance', balance);
                 localStorage.setItem('name', name);
                 localStorage.setItem('token', token);
-=======
-            .subscribe((value: any) => {
-                console.log(value);
-          
-                localStorage.setItem('token', value);
->>>>>>> 5e05f610c802511af3c919941c7f3800e46c4adb
                 
               alert('Login efetuado com sucesso!!!');
                 //   localStorage.setItem('token', value.idToken);
