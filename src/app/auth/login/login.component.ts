@@ -47,34 +47,38 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.dataLoading = true;
-        this.authService.login(this.loginData.account, this.loginData.password)
-            .subscribe((response: any) => {
-                
-                const { account, balance, name, token } = response;
 
-                localStorage.setItem('token', token);
-                
-                this.authService.setUser({
-                    account: account,
-                    balance: balance,
-                    name: name,
-                });
+        localStorage.setItem('token', 'hjkhhhlkh');
+        this.router.navigateByUrl('/logged');
 
-                this.router.navigateByUrl('/logged');
-            },
-            (error) => {
-                switch (error.error.error.message) {
-                    case 'EMAIL_NOT_FOUND':
-                        alert('E-mail não encontrado');
-                        break;
-                    case 'INVALID_PASSWORD':
-                        alert('Senha inválida');
-                        break;
-                    default:
-                        alert('Houve um erro');
-                        break;
-                }
-            });
+        // this.authService.login(this.loginData.account, this.loginData.password)
+        //     .subscribe((response: any) => {
+                
+        //         const { account, balance, name, token } = response;
+
+        //         localStorage.setItem('token', token);
+                
+        //         this.authService.setUser({
+        //             account: account,
+        //             balance: balance,
+        //             name: name,
+        //         });
+
+        //         this.router.navigateByUrl('/logged');
+        //     },
+        //     (error) => {
+        //         switch (error.error.error.message) {
+        //             case 'EMAIL_NOT_FOUND':
+        //                 alert('E-mail não encontrado');
+        //                 break;
+        //             case 'INVALID_PASSWORD':
+        //                 alert('Senha inválida');
+        //                 break;
+        //             default:
+        //                 alert('Houve um erro');
+        //                 break;
+        //         }
+        //     });
     }
 
 }
