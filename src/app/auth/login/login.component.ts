@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
     loginData: Login = { account: null, password: [] };
     password: String = "";
     dataLoading: Boolean = false;
+    errorMessage: String = "";
 
     constructor(private authService: AuthService,
         private router: Router) { }
@@ -81,7 +82,7 @@ export class LoginComponent implements OnInit {
                     account: value.account
                 });
 
-                this.router.navigateByUrl('/home');
+                this.router.navigateByUrl('/');
             })
             .catch((error) => {
                 alert(error);
