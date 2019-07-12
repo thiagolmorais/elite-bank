@@ -18,7 +18,10 @@
                         <a class="navbar-brand" href="#">Cadastro</a>
                     </div>
                 </nav>
-                <form class="form-login">
+                <form class="form-login" #formLogin="ngForm">
+                    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+                        {{errorMessage}}
+                    </div>
                     <div class="form-group">
                         <div class="input-group">
                             <input placeholder="Digite sua conta"
@@ -27,10 +30,13 @@
                                    name="account"
                                    class="bank-input form-control text-muted"
                                    [(ngModel)]="loginData.account"
-                                   maxlength="8"
+                                   maxlength="7"
+                                   minlength="6"
                                    inputmode="numeric"
-                                   pattern="[0-9]*">
-                                   <!-- digitOnly -->
+                                   pattern="[0-9]*"
+                                   onkeypress="return event.keyCode != 13"
+                                   appDigitOnly
+                                   required>
                             <i class="icon fa fa-user"></i>
                         </div>    
                     </div>
@@ -41,10 +47,14 @@
                                    id="password"
                                    name="password"
                                    class="bank-input form-control text-muted"
-                                   disabled
                                    [(ngModel)]="password"
                                    maxlength="6"
-                                   >
+                                   minlength="6"
+                                   inputmode="numeric"
+                                   pattern="[0-9]*"
+                                   readonly
+                                   onkeypress="return false"
+                                   required>
                             <i class="icon fa fa-lock"></i>
                         </div>
                     </div>
@@ -59,8 +69,16 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="btnSubmit btn btn-primary" (click)="login()">Enviar</button>
-                        <small class="forgot-password">Esqueceu sua senha? <br><a href="password/forgot">Clique aqui</a> para redefinir.</small>
+                        <div class="submit-number">
+                            <div class="numbers">
+                                <button *ngIf="!dataLoading" class="btnSubmit btn btn-primary" (click)="login()" [disabled]="formLogin.invalid">Enviar</button>
+                                <button *ngIf="dataLoading" class="btnSubmit btn btn-primary">
+                                    <span class="spinner-border spinner-border-sm"></span>
+                                        <!-- Enviando... -->
+                                </button>
+                            </div>
+                            <small class="forgot-password">Esqueceu sua senha? <br><a href="#">Clique aqui</a> para redefinir.</small>
+                        </div>
                     </div>
                 </form>
             </div>
