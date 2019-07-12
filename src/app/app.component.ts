@@ -23,25 +23,19 @@ export class AppComponent implements OnInit {
         } else {
             //  VERIFICAR TOKEN AQUI COM SUBSCRIBE
             this.authService.checkToken(token)
-                .then((value: any) => {
+            .then((value: any) => {
 
-                    this.authService.setUser({
-                        name: value.name,
-                        email: value.email,
-                        account: value.account
-                    });
-                    this.router.navigateByUrl('/logged');
-                })
-                .catch((error) => {
-                    alert(error);
-                    console.log(error);
+                this.authService.setUser({
+                    name: value.name,
+                    balance: value.balance,
+                    account: value.account
                 });
-            // .subscribe((v: any) => {
-            //   this.authService.setUser({
-            //     id: v.users[0].localId,
-            //     email: v.users[0].email,
-            //   });
-            // });
+                this.router.navigateByUrl('/logged');
+            })
+            .catch((error) => {
+                alert(error);
+                console.log(error);
+            });
         }
 
         this.user$ = this.authService.correntUser;

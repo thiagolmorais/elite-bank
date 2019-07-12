@@ -52,54 +52,29 @@ export class LoginComponent implements OnInit {
                 
                 const { account, balance, name, token } = response;
 
-                localStorage.setItem('account', account);
-                localStorage.setItem('balance', balance);
-                localStorage.setItem('name', name);
                 localStorage.setItem('token', token);
                 
-              alert('Login efetuado com sucesso!!!');
-                //   localStorage.setItem('token', value.idToken);
-
-                //   alert('Login efetuado com sucesso!!!');
-                //   localStorage.setItem('token', value.idToken);
-
-                //   this.authService.setUser({
-                //     id: value.localId,
-                //     email: value.email,
-                //   });
+                this.authService.setUser({
+                    account: account,
+                    balance: balance,
+                    name: name,
+                });
 
                 this.router.navigateByUrl('/logged');
             },
-                (error) => {
-                    switch (error.error.error.message) {
-                        case 'EMAIL_NOT_FOUND':
-                            alert('E-mail não encontrado');
-                            break;
-                        case 'INVALID_PASSWORD':
-                            alert('Senha inválida');
-                            break;
-                        default:
-                            alert('Houve um erro');
-                            break;
-                    }
-                });
-
-        // .then((value: any) => {
-        //     alert('Login efetuado com sucesso!!!');
-        //     localStorage.setItem('token', value.token);
-
-        //     this.authService.setUser({
-        //         name: value.name,
-        //         email: value.email,
-        //         account: value.account
-        //     });
-
-        //     this.router.navigateByUrl('/');
-        // })
-        // .catch((error) => {
-        //     alert(error);
-        //     console.log(error);
-        // });
+            (error) => {
+                switch (error.error.error.message) {
+                    case 'EMAIL_NOT_FOUND':
+                        alert('E-mail não encontrado');
+                        break;
+                    case 'INVALID_PASSWORD':
+                        alert('Senha inválida');
+                        break;
+                    default:
+                        alert('Houve um erro');
+                        break;
+                }
+            });
     }
 
 }
