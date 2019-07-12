@@ -14,44 +14,47 @@
                     <div class="div-navbar -active">
                         <a class="navbar-brand" href="#">Login</a>
                     </div>
-                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button> -->
-                    <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                            <a class="nav-item nav-link" href="#">Features</a>
-                            <a class="nav-item nav-link" href="#">Pricing</a>
-                            <a class="nav-item nav-link disabled" href="#">Disabled</a>
-                        </div>
-                    </div> -->
                     <div class="div-navbar">
                         <a class="navbar-brand" href="#">Cadastro</a>
                     </div>
-                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button> -->
                 </nav>
                 <form class="form-login">
                     <div class="form-group">
                         <div class="input-group">
-                            <input placeholder="Digite seu usuário" autocomplete="username" type="text" id="username" class="bank-input form-control text-muted">
+                            <input placeholder="Digite sua conta"
+                                   type="text"
+                                   id="account"
+                                   name="account"
+                                   class="bank-input form-control text-muted"
+                                   [(ngModel)]="loginData.account"
+                                   maxlength="8"
+                                   inputmode="numeric"
+                                   pattern="[0-9]*">
+                                   <!-- digitOnly -->
                             <i class="icon fa fa-user"></i>
                         </div>    
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <input placeholder="******" autocomplete="password" type="text" id="password" class="bank-input form-control text-muted" disabled>
+                            <input placeholder="******"
+                                   type="password"
+                                   id="password"
+                                   name="password"
+                                   class="bank-input form-control text-muted"
+                                   disabled
+                                   [(ngModel)]="password"
+                                   maxlength="6"
+                                   >
                             <i class="icon fa fa-lock"></i>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="control-numbers">
                             <div class="numbers" *ngFor="let randomNumber of randomNumbers">
-                                <button class="btn btn-primary">{{randomNumber.first}} ou {{randomNumber.second}}</button>                                
+                                <button class="btn btn-primary" (click)="addPasswordNumber(randomNumber)">{{randomNumber[0]}} ou {{randomNumber[1]}}</button>                                
                             </div>
                             <div class="numbers">
-                                <button class="btnDelete btn btn-primary">DEL</button>
+                                <button class="btnDelete btn btn-primary" (click)="deletePassword()">DEL</button>
                             </div>
                         </div>
                     </div>
@@ -59,11 +62,9 @@
                         <button class="btnSubmit btn btn-primary" (click)="login()">Enviar</button>
                         <small class="forgot-password">Esqueceu sua senha? <br><a href="password/forgot">Clique aqui</a> para redefinir.</small>
                     </div>
-                    <!-- <div class="form-group">
-                        <button class="btnSubmit btn btn-primary" type="button">Entrar</button>
-                    </div> -->
                 </form>
             </div>
         </div>
     </div>
+    <app-footer></app-footer>
 </div>

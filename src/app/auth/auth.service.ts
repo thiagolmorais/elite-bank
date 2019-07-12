@@ -27,6 +27,14 @@ export class AuthService {
     //   reject({result: 'Houve erro'});
     // });
 
+    // return this.httpClient.post(`${ELITE_BANK_API}/user`, {
+    //   name: 'teste',
+    //   password: '123',
+    //   balance: 10000,
+    //   email: 'teste@teste.com',
+    //   account: 12332
+    // });
+
     return this.httpClient.post(`${ELITE_BANK_API}`, {
       account,
       password
