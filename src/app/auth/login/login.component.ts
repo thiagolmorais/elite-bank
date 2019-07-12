@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
                 //     email: value.email,
                 //   });
 
-                //   this.router.navigateByUrl('/');
+                this.router.navigateByUrl('/logged');
             },
                 (error) => {
                     switch (error.error.error.message) {
