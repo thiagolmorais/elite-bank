@@ -17,6 +17,8 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
   login(account, password) {
+    console.log({account: account, password: password});
+    
     // return new Promise((resolve, reject) => {
     //   resolve({
     //   account: "98765",
@@ -35,7 +37,7 @@ export class AuthService {
     //   account: 12332
     // });
 
-    return this.httpClient.post(`${ELITE_BANK_API}`, {
+    return this.httpClient.post(`${ELITE_BANK_API}/login`, {
       account,
       password
     });
