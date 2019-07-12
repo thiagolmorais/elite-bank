@@ -37,7 +37,7 @@ export class AuthService {
     //   account: 12332
     // });
 
-    return this.httpClient.post(`${ELITE_BANK_API}/user/password`, {
+    return this.httpClient.post(`${ELITE_BANK_API}/login`, {
       account,
       password
     });
