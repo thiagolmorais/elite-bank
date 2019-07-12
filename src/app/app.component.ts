@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
         const token = localStorage.getItem('token');
 
         if (!token) {
-            this.router.navigateByUrl('/auth');
+            this.router.navigateByUrl('/login');
         } else {
             //  VERIFICAR TOKEN AQUI COM SUBSCRIBE
             this.authService.checkToken(token)
@@ -34,7 +34,6 @@ export class AppComponent implements OnInit {
             })
             .catch((error) => {
                 alert(error);
-                console.log(error);
             });
         }
 
