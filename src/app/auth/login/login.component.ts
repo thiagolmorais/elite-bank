@@ -45,9 +45,14 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.authService.login(this.loginData.account, this.loginData.password)
-            .subscribe((value: any) => {
-                console.log(value);
-                localStorage.setItem('token', value);
+            .subscribe((response: any) => {
+                
+                const { account, balance, name, token } = response;
+
+                localStorage.setItem('account', account);
+                localStorage.setItem('balance', balance);
+                localStorage.setItem('name', name);
+                localStorage.setItem('token', token);
                 
               alert('Login efetuado com sucesso!!!');
             //   localStorage.setItem('token', value.idToken);
