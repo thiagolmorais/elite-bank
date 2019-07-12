@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
     randomNumbers: Array<number> = [];
     loginData: Login = { account: null, password: [] };
     password: String = "";
+    dataLoading: Boolean = false;
+    errorMessage: String = "";
 
     constructor(private authService: AuthService,
         private router: Router) { }
@@ -44,51 +46,56 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
+        this.dataLoading = true;
         this.authService.login(this.loginData.account, this.loginData.password)
             .subscribe((value: any) => {
                 console.log(value);
+          
                 localStorage.setItem('token', value);
                 
               alert('Login efetuado com sucesso!!!');
-            //   localStorage.setItem('token', value.idToken);
+                //   localStorage.setItem('token', value.idToken);
 
-            //   this.authService.setUser({
-            //     id: value.localId,
-            //     email: value.email,
-            //   });
+                //   alert('Login efetuado com sucesso!!!');
+                //   localStorage.setItem('token', value.idToken);
 
-            //   this.router.navigateByUrl('/');
+                //   this.authService.setUser({
+                //     id: value.localId,
+                //     email: value.email,
+                //   });
+
+                this.router.navigateByUrl('/logged');
             },
-            (error) => {
-              switch (error.error.error.message) {
-                case 'EMAIL_NOT_FOUND':
-                  alert('E-mail não encontrado');
-                  break;
-                case 'INVALID_PASSWORD':
-                  alert('Senha inválida');
-                  break;
-                default:
-                  alert('Houve um erro');
-                  break;
-              }
-            });
+                (error) => {
+                    switch (error.error.error.message) {
+                        case 'EMAIL_NOT_FOUND':
+                            alert('E-mail não encontrado');
+                            break;
+                        case 'INVALID_PASSWORD':
+                            alert('Senha inválida');
+                            break;
+                        default:
+                            alert('Houve um erro');
+                            break;
+                    }
+                });
 
-            // .then((value: any) => {
-            //     alert('Login efetuado com sucesso!!!');
-            //     localStorage.setItem('token', value.token);
+        // .then((value: any) => {
+        //     alert('Login efetuado com sucesso!!!');
+        //     localStorage.setItem('token', value.token);
 
-            //     this.authService.setUser({
-            //         name: value.name,
-            //         email: value.email,
-            //         account: value.account
-            //     });
+        //     this.authService.setUser({
+        //         name: value.name,
+        //         email: value.email,
+        //         account: value.account
+        //     });
 
-            //     this.router.navigateByUrl('/');
-            // })
-            // .catch((error) => {
-            //     alert(error);
-            //     console.log(error);
-            // });
+        //     this.router.navigateByUrl('/');
+        // })
+        // .catch((error) => {
+        //     alert(error);
+        //     console.log(error);
+        // });
     }
 
 }

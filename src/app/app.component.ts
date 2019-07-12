@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
                         email: value.email,
                         account: value.account
                     });
+                    this.router.navigateByUrl('/logged');
                 })
                 .catch((error) => {
                     alert(error);
