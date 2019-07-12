@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
     randomNumbers: Array<number> = [];
     loginData: Login = { account: null, password: [] };
     password: String = "";
+    dataLoading: Boolean = false;
 
     constructor(private authService: AuthService,
         private router: Router) { }
@@ -44,6 +45,7 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
+        this.dataLoading = true;
         this.authService.login(this.loginData.account, this.loginData.password)
             // .subscribe((value: any) => {
             //   alert('Login efetuado com sucesso!!!');
@@ -70,7 +72,7 @@ export class LoginComponent implements OnInit {
             //   }
             // });
             .then((value: any) => {
-                alert('Login efetuado com sucesso!!!');
+                console.log('Login efetuado com sucesso!!!');
                 localStorage.setItem('token', value.token);
 
                 this.authService.setUser({
@@ -79,7 +81,7 @@ export class LoginComponent implements OnInit {
                     account: value.account
                 });
 
-                this.router.navigateByUrl('/');
+                this.router.navigateByUrl('/home');
             })
             .catch((error) => {
                 alert(error);

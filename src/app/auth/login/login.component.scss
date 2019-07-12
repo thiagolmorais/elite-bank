@@ -137,11 +137,14 @@
     }
 }
 
-input:disabled {
+input:read-only {
     background-color: inherit;
 }
 
 @media screen and (max-width: 1000px) {
+    .image-container {
+        height: initial;
+    }
     .login-container {
         height: initial;
         > .content-container {
@@ -194,6 +197,9 @@ input:disabled {
 }
 
 @media screen and (max-height: 530px) {
+    .image-container {
+        height: initial;
+    }
     .login-container {
         height: initial;
     }
