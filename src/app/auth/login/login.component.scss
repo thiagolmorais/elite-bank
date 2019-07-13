@@ -1,10 +1,12 @@
 .image-container {
     height: 100%;
-    background: url(https://media.brstatic.com/2018/03/12103326/want-save-money-on-paper-checks-skip-bank.jpg) no-repeat center top fixed;
+    // background: url(https://www.mulhermagnetica.com.br/wp-content/uploads/2018/11/How-to-Use-Texting-for-Your-Small-Business-.jpg) no-repeat center top fixed;
+    // https://media.brstatic.com/2018/03/12103326/want-save-money-on-paper-checks-skip-bank.jpg
     // https://ix-cdn.brightedge.com/images/43431/43431_1e46749714f941a2a8eb326fa1ab7439_1505352510.jpg
     // https://backgrounddownload.com/wp-content/uploads/2018/09/banking-background-images-1.jpg
-    background-size: cover;
-    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.2);
+    // background: url(https://www.mulhermagnetica.com.br/wp-content/uploads/2018/11/How-to-Use-Texting-for-Your-Small-Business-.jpg) no-repeat center top fixed;
+    // background-size: cover;
+    // box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.2);
     overflow-x: hidden;
 }
 
@@ -12,7 +14,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80%;
+    // height: 80%;
+    background: url(https://www.mulhermagnetica.com.br/wp-content/uploads/2018/11/How-to-Use-Texting-for-Your-Small-Business-.jpg) no-repeat center top fixed;
+    background-size: cover;
+    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.2);
 
     > .content-container {
         display: flex;
@@ -20,6 +25,8 @@
         justify-content: space-between;
         padding-left: 70px;
         padding-right: 70px;
+        padding-top: 25px;
+        padding-bottom: 25px;
         // align-items: flex-start;
 
         > .info-container {
@@ -41,12 +48,16 @@
             background-color: white;
 
             .div-navbar {
-                width: 50%;
+                width: 100%;
                 display: flex;
                 justify-content: center;
                 padding: .5rem 1rem;
             }
             
+            .navbar-brand {
+                margin-right: 0;
+            }
+
             .div-navbar.-active {
                 background-color: white;
             }
