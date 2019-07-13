@@ -10,8 +10,9 @@ import { ExtractComponent } from './extract/extract.component';
 
 const routes: Routes = [
     { path: '', component: LoggedComponent },
-    { path: 'home', component: HomeComponent },
     { path: 'extract', component: ExtractComponent },
+    { path: 'home', component: HomeComponent },
+    { path: 'transfer', component: TransferComponent },
 ];
 
 @NgModule({
