@@ -12,8 +12,7 @@ export class AppComponent implements OnInit {
 
     user$: Observable<any>;
 
-    constructor(private authService: AuthService,
-        private router: Router) { }
+    constructor(private authService: AuthService) { }
 
     ngOnInit() {
         this.authService.checkToken();
