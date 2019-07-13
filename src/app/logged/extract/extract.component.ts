@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-logged',
-  templateUrl: './logged.component.html',
-  styleUrls: ['./logged.component.scss']
+  selector: 'app-extract',
+  templateUrl: './extract.component.html',
+  styleUrls: ['./extract.component.scss']
 })
-export class LoggedComponent implements OnInit {
+export class ExtractComponent implements OnInit {
 
   user$: Observable<any>;
 

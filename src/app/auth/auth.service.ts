@@ -42,6 +42,7 @@ export class AuthService {
         const { response, message } = dados;
         if(!response) {
             alert(`Erro: ${message}`);
+            this.router.navigateByUrl('/login');
             return;
         }
   
@@ -56,16 +57,20 @@ export class AuthService {
     }
   };
 
-  async logout(account, token) {
-     const logout = await this.httpClient.post(`${ELITE_BANK_API}/logout`, {
+  logout() {
+    const token = localStorage.getItem('token');
+    const account = localStorage.getItem('account');
+
+     this.httpClient.post(`${ELITE_BANK_API}/logout`, {
       account: account,
       token: token
+    })
+    .subscribe(() => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('account');
+      
+      this.router.navigateByUrl('/login');
     });
-
-    localStorage.removeItem('token');
-    this.setUser(null);
-
-    return logout;
   };
 
 }
