@@ -11,21 +11,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./transfer.component.css']
 })
 export class TransferComponent implements OnInit {
+
+  user$: Observable<any>;
+  
   /*
     TODO: Account será pego do login, tirar esse código após implementação do login
   */
 
-  user$: Observable<any>;
-
-  account: Account = {
-    id: 100002,
-    account: 100002,
-    name: "Correntista da Silva",
-    password: "123456",
-    balance: 120.00,
-    email: "correntista@email.com",
-    created: "2018-10-31"
-  };
+  accountNumber = null;
 
   destAccount: DestAccount = {
     id: null,
@@ -35,12 +28,16 @@ export class TransferComponent implements OnInit {
   };
 
   destAccountNumber = null;
-
-  transferValue = null;
-
-  constructor(private transferService: TransferService, private authService: AuthService) { }
   
-  ngOnInit() {
+  transferValue = null;
+  
+  constructor(private transferService: TransferService,
+    private authService: AuthService) { }
+  
+    ngOnInit() {
+      this.authService.checkToken();
+      this.user$ = this.authService.currentUser;
+      this.accountNumber = localStorage.getItem('account')
   }
 
   checkDestAccount() {
@@ -55,7 +52,7 @@ export class TransferComponent implements OnInit {
   }
 
   transfer() {
-    this.transferService.transferValue(this.account.account, this.destAccount.account, this.transferValue).subscribe((payload) => {
+    this.transferService.transferValue(this.accountNumber, this.destAccount.account, this.transferValue).subscribe((payload) => {
       console.log(payload)
     })
   }

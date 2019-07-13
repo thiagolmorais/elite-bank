@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 import { ELITE_BANK_API } from '../app.api';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,10 @@ import { ELITE_BANK_API } from '../app.api';
 export class AuthService {
 
   private pUser = new BehaviorSubject(null);
-  correntUser = this.pUser.asObservable();
+  currentUser = this.pUser.asObservable();
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+              private router: Router) { }
 
   login(account, password) {
     return this.httpClient.post(`${ELITE_BANK_API}/login`, {
@@ -25,24 +27,45 @@ export class AuthService {
     this.pUser.next(user);
   };
 
-  checkToken(token) {
-    return new Promise((resolve, reject) => {
-      resolve({
-      account: "98765",
-      token: "eyJhbGciOiJSUzI1NiIsImtpZCI6InNrSUJOZyJ9.eyJpc3MiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGUuY29tLyIsImF1ZCI6ImdhbWEtYW5ndWxhci1jMWNkZSIsImlhdCI6MTU2MjY5NTM0NiwiZXhwIjoxNTYzOTA0OTQ2LCJ1c2VyX2lkIjoiZVlhY2k4eWVjWWVoVUNIa2pYNEVjSVN1anJRMiIsImVtYWlsIjoiZ3V0bzc2MjZAaG90bWFpbC5jb20iLCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQiLCJ2ZXJpZmllZCI6ZmFsc2V9.JHCjLoK-iL_q7nIBlVmHSH3Kg_NotpfndI-lpqXQ6-kQUIAjdwK01GRrb_rUt33LbXbNtCnH3vSGLNf65yd6BNx4Pt3GAcdqzp6Pa5w1lmErrihRW6y8e1GMfXMkQRkdNmQ_1pTjgKNIXGTSOj9g4EfdpQe0nVRYkcay61u533RwLGoSsDlUEDuZCu6vZ5C5PEnrzb25ysPbaGohfK1c-mKqZed26rsLRtz1IyeNbHCPC1QibCvgaXRw-V3ozSwHs5P8yDeOyTMFZGEh7OPAhMpqO9Q85rHHPruTDuO9c4sS_aecWDRvnpuXFS2eb7oiXtMJGy9vz_AypwVpzZSCnw",
-      balance: 10000,
-      name: "Correntista da Silva"});
+  checkToken() {
+    const token = localStorage.getItem('token');
+    const account = localStorage.getItem('account');
 
-      reject({result: 'Houve erro'});
-    });
-    // return this.httpClient.post(`${API_ELITE_BANK}/getAccountInfo?key=${KEY}`, {
-    //   idToken: token
-    // });
+    if (!token) {
+        this.router.navigateByUrl('/login');
+    } else {
+      return this.httpClient.post(`${ELITE_BANK_API}/checktoken`, {
+        account: account,
+        token: token
+      })
+      .subscribe((dados: any) => {
+        const { response, message } = dados;
+        if(!response) {
+            alert(`Erro: ${message}`);
+            return;
+        }
+  
+        const { account, balance, name } = message;
+  
+        this.setUser({
+            name: name,
+            balance: balance,
+            account: account
+        });
+      });
+    }
   };
 
-  logout() {
+  async logout(account, token) {
+     const logout = await this.httpClient.post(`${ELITE_BANK_API}/logout`, {
+      account: account,
+      token: token
+    });
+
     localStorage.removeItem('token');
     this.setUser(null);
+
+    return logout;
   };
 
 }

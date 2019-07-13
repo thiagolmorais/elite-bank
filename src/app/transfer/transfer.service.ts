@@ -14,10 +14,10 @@ export class TransferService {
   }
 
   transferValue(originAccountNumber, destAccountNumber, transferValue) {
-    const payload = { origin: originAccountNumber, destination: destAccountNumber, value: parseInt(transferValue) }
-    console.log(Number.isInteger(originAccountNumber))
-    console.log(Number.isInteger(destAccountNumber))
-    console.log(Number.isInteger(parseInt(transferValue)))
-    return this.httpClient.post(`${ELITE_BANK_API}/transfer`, payload);
+    return this.httpClient.post(`${ELITE_BANK_API}/transfer`, {
+      origin: originAccountNumber,
+      destination: destAccountNumber,
+      value: parseInt(transferValue)
+    });
   }
 }

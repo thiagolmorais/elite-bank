@@ -26,11 +26,16 @@ export class LoginComponent implements OnInit {
     // }
 
     ngOnInit() {
+        // Caso já esteja logado, redireciona para logged
+        const token = localStorage.getItem('token');
+        if(token) {
+            this.router.navigateByUrl('/logged');
+        }
+
         let minValue = 0;
         let maxValue = 9;
         this.loginData = { account: null, password: [] };
         this.randomNumbers = generateKeyboardNumbers(minValue, maxValue);
-        console.log(this.randomNumbers)
     }
 
     addPasswordNumber(randomNumber: number) {
@@ -48,14 +53,21 @@ export class LoginComponent implements OnInit {
     login() {
         this.dataLoading = true;
         this.authService.login(this.loginData.account, this.loginData.password)
-            .subscribe((response: any) => {
+            .subscribe((dados: any) => {
                 
-                const { account, balance, name, token } = response;
+                const { response, message } = dados;
+                if(!response) {
+                    alert(`Erro: ${message}`);
+                    this.dataLoading = false;
+                    return;
+                }
 
-                localStorage.setItem('token', token);
+                const { account, balance, name, userToken } = message;
+
+                localStorage.setItem('token', userToken);
+                localStorage.setItem('account', account);
                 
                 this.authService.setUser({
-                    account: account,
                     balance: balance,
                     name: name,
                 });

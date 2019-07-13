@@ -16,32 +16,7 @@ export class AppComponent implements OnInit {
         private router: Router) { }
 
     ngOnInit() {
-        const token = localStorage.getItem('token');
-
-        if (!token) {
-            this.router.navigateByUrl('/login');
-        } else {
-            //  VERIFICAR TOKEN AQUI COM SUBSCRIBE
-            this.authService.checkToken(token)
-            .then((value: any) => {
-
-                this.authService.setUser({
-                    name: value.name,
-                    balance: value.balance,
-                    account: value.account
-                });
-                // this.router.navigateByUrl('/logged');
-            })
-            .catch((error) => {
-                alert(error);
-            });
-        }
-
-        this.user$ = this.authService.correntUser;
+        this.authService.checkToken();
+        this.user$ = this.authService.currentUser;
     }
-
-    logout() {
-        this.authService.logout();
-    }
-
 }
