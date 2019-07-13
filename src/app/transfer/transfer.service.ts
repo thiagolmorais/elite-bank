@@ -9,14 +9,10 @@ export class TransferService {
   constructor(private httpClient: HttpClient) { }
 
   destAccount(accountNumber) {
-    return this.httpClient.get('http://localhost:3000/accounts/' + accountNumber);
+    return this.httpClient.get('https://cors-anywhere.herokuapp.com/https://elite-bank-api-homolog.herokuapp.com/accounts/' + accountNumber);
   }
 
   transferValue(originAccountNumber, destAccountNumber, transferValue) {
-    console.log("Conta origem: " + originAccountNumber)
-    console.log("Conta destino: " + destAccountNumber)
-    console.log("Valor da transferencia: " + transferValue)
-
-    return this.httpClient.post('http://localhost:3000/transfer/', {origin: originAccountNumber, destination: destAccountNumber, value: transferValue });
+    return this.httpClient.post('https://cors-anywhere.herokuapp.com/https://elite-bank-api-homolog.herokuapp.com/transfer', {origin: originAccountNumber, destination: destAccountNumber, value: transferValue });
   }
 }

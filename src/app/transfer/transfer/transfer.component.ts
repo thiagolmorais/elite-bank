@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TransferService } from '../transfer.service';
 import { DestAccount } from '../../typings/DestAccount';
 import { Account } from '../../typings/Account';
+import { log } from 'util';
 
 @Component({
   selector: 'app-transfer',
@@ -13,8 +14,8 @@ export class TransferComponent implements OnInit {
     TODO: Account será pego do login, tirar esse código após implementação do login
   */
   account: Account = {
-    id: 98765,
-    account: 98765,
+    id: 1002,
+    account: 1002,
     name: "Correntista da Silva",
     password: "123456",
     balance: 120.00,
@@ -39,14 +40,18 @@ export class TransferComponent implements OnInit {
   }
 
   checkDestAccount() {
-    this.transferService.destAccount(this.destAccountNumber).subscribe((destAccount: DestAccount) => {
-      this.destAccount = destAccount
+    this.transferService.destAccount(this.destAccountNumber).subscribe((resp: any) => {
+      const { response, message } = resp
+      if(response) {
+        this.destAccount = message
+        return this.destAccount
+      }
+      return alert(message); 
     });
   }
 
   transfer() {
-    this.transferService.transferValue(this.account.account, this.destAccount.account, this.transferValue).subscribe(() => {
-      alert ('Valor transferido com sucesso');
+    this.transferService.transferValue(this.account.account, this.destAccount.account, this.transferValue).subscribe((payload) => {
     })
   }
 }
