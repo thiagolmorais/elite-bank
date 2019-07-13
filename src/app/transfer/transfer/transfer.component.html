@@ -1,0 +1,20 @@
+<div *ngIf="this.destAccount.account; else withAccount">
+    <p>Conta destino: {{this.destAccount.account}}</p>
+    <p>Nome do destinatário: {{this.destAccount.name}}</p>
+
+    <form #form="ngForm">
+        <div>
+            <input type="text" [(ngModel)]="transferValue" name="transferValue" id="transferValue">
+        </div>
+        <button (click)="transfer()">Transferir</button>
+    </form>
+</div>
+
+<ng-template #withAccount>
+    <form #form="ngForm">
+        <div>
+            <input type="text" [(ngModel)]="destAccountNumber" name="destAccountNumber" id="destAccountNumber">
+        </div>
+        <button (click)="checkDestAccount()">Próximo</button>
+    </form>
+</ng-template>

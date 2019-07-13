@@ -5,65 +5,84 @@
             <div class="info-container">
                 <h1>SAIBA COMO USAR</h1>
     
-                <p>Em seu primeiro acesso crie um Usuário e uma Senha Internet na opção CADASTRAR. Os dados (nome, CPF e data de nascimento) devem ser informados conforme cadastro na Receita Federal. Dessa forma você estará apto para consultar saldo, extrato da conta ou extrato de compras com cartão de débito.</p>
-                <p>Para realizar transações financeiras é necessário cadastrar a assinatura eletrônica e o dispositivo a ser utilizado.</p>
-                <p>A assinatura eletrônica pode ser cadastrada no próprio Internet Banking CAIXA na opção Configurar Acesso > Consultar contas, caso o cartão da sua conta possua chip. Após o cadastramento você deve desbloqueá-la em um de nossos Caixas Eletrônicos, na opção Outros Serviços > Outros Serviços > Senhas e validações de acesso > Desbloqueio de assinatura eletrônica.</p>
+                <p>Em seu primeiro acesso crie um usuário (conta) e uma senha Internet Banking na opção CADASTRO. Os dados (nome, CPF e data de nascimento) devem ser informados conforme cadastro na Receita Federal. Dessa forma você estará apto para realizar transferência, visualizar extrato e muitos mais.</p>
+                <p>A senha é composta por 6 dígitos numéricos e a conta é criada automaticamente no seu primeiro acesso.</p>
+                <p>Caso tenha esquecido sua senha, basta digitar seu usuário e clicar na opção Esqueceu sua senha, para que um link seja enviado ao e-mail cadastrado para geração de nova senha.</p>
             </div>
             <div class="form-container">
                 <nav class="navbar navbar-light bg-light">
                     <div class="div-navbar -active">
                         <a class="navbar-brand" href="#">Login</a>
                     </div>
-                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button> -->
-                    <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                            <a class="nav-item nav-link" href="#">Features</a>
-                            <a class="nav-item nav-link" href="#">Pricing</a>
-                            <a class="nav-item nav-link disabled" href="#">Disabled</a>
-                        </div>
-                    </div> -->
                     <div class="div-navbar">
                         <a class="navbar-brand" href="#">Cadastro</a>
                     </div>
-                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button> -->
                 </nav>
-                <form class="form-login">
+                <form class="form-login" #formLogin="ngForm">
+                    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+                        {{errorMessage}}
+                    </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <input placeholder="Digite seu usuário" autocomplete="username" type="text" id="username" class="bank-input form-control text-muted">
+                            <input placeholder="Digite sua conta"
+                                   type="text"
+                                   id="account"
+                                   name="account"
+                                   class="bank-input form-control text-muted"
+                                   [(ngModel)]="loginData.account"
+                                   maxlength="7"
+                                   minlength="6"
+                                   inputmode="numeric"
+                                   pattern="[0-9]*"
+                                   onkeypress="return event.keyCode != 13"
+                                   appDigitOnly
+                                   required>
                             <i class="icon fa fa-user"></i>
                         </div>    
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <input placeholder="******" autocomplete="password" type="text" id="password" class="bank-input form-control text-muted" disabled>
+                            <input placeholder="******"
+                                   type="password"
+                                   id="password"
+                                   name="password"
+                                   class="bank-input form-control text-muted"
+                                   [(ngModel)]="password"
+                                   maxlength="6"
+                                   minlength="6"
+                                   inputmode="numeric"
+                                   pattern="[0-9]*"
+                                   readonly
+                                   onkeypress="return false"
+                                   required>
                             <i class="icon fa fa-lock"></i>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="control-numbers">
                             <div class="numbers" *ngFor="let randomNumber of randomNumbers">
-                                <button class="btn btn-primary">{{randomNumber.first}} ou {{randomNumber.second}}</button>                                
+                                <button class="btn btn-primary" (click)="addPasswordNumber(randomNumber)">{{randomNumber[0]}} ou {{randomNumber[1]}}</button>                                
                             </div>
                             <div class="numbers">
-                                <button class="btnDelete btn btn-primary">DEL</button>
+                                <button class="btnDelete btn btn-primary" (click)="deletePassword()">DEL</button>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="btnSubmit btn btn-primary">Enviar</button>
-                        <small class="forgot-password">Esqueceu sua senha? <br><a href="password/forgot">Clique aqui</a> para redefinir.</small>
+                        <div class="submit-number">
+                            <div class="numbers">
+                                <button *ngIf="!dataLoading" class="btnSubmit btn btn-primary" (click)="login()" [disabled]="formLogin.invalid">Enviar</button>
+                                <button *ngIf="dataLoading" class="btnSubmit btn btn-primary">
+                                    <span class="spinner-border spinner-border-sm"></span>
+                                        <!-- Enviando... -->
+                                </button>
+                            </div>
+                            <small class="forgot-password">Esqueceu sua senha? <br><a href="#">Clique aqui</a> para redefinir.</small>
+                        </div>
                     </div>
-                    <!-- <div class="form-group">
-                        <button class="btnSubmit btn btn-primary" type="button">Entrar</button>
-                    </div> -->
                 </form>
             </div>
         </div>
     </div>
+    <app-footer></app-footer>
 </div>
