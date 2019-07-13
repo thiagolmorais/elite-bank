@@ -19,5 +19,4 @@ export class LoggedComponent implements OnInit {
     this.user$ = this.authService.currentUser;
   }
 
-
 }
