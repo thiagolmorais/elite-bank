@@ -17,15 +17,8 @@ export class TransferComponent implements OnInit {
   /*
     TODO: Account será pego do login, tirar esse código após implementação do login
   */
-  account: Account = {
-    id: 98765,
-    account: 98765,
-    name: "Correntista da Silva",
-    password: "123456",
-    balance: 120.00,
-    email: "correntista@email.com",
-    created: "2018-10-31"
-  };
+
+  accountNumber = null;
 
   destAccount: DestAccount = {
     id: null,
@@ -35,26 +28,32 @@ export class TransferComponent implements OnInit {
   };
 
   destAccountNumber = null;
-
-  transferValue = null;
-
-  constructor(private transferService: TransferService,
-              private authService: AuthService) { }
   
-  ngOnInit() {
-    this.authService.checkToken();
-    this.user$ = this.authService.currentUser;
+  transferValue = null;
+  
+  constructor(private transferService: TransferService,
+    private authService: AuthService) { }
+  
+    ngOnInit() {
+      this.authService.checkToken();
+      this.user$ = this.authService.currentUser;
+      this.accountNumber = localStorage.getItem('account')
   }
 
   checkDestAccount() {
-    this.transferService.destAccount(this.destAccountNumber).subscribe((destAccount: DestAccount) => {
-      this.destAccount = destAccount
+    this.transferService.destAccount(this.destAccountNumber).subscribe((resp: any) => {
+      const { response, message } = resp
+      if(response) {
+        this.destAccount = message
+        return this.destAccount
+      }
+      return alert(message); 
     });
   }
 
   transfer() {
-    this.transferService.transferValue(this.account.account, this.destAccount.account, this.transferValue).subscribe(() => {
-      alert ('Valor transferido com sucesso');
+    this.transferService.transferValue(this.accountNumber, this.destAccount.account, this.transferValue).subscribe((payload) => {
+      console.log(payload)
     })
   }
 }
