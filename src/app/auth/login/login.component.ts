@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
                     name: name,
                 });
 
-                // this.router.navigateByUrl('/logged');
+                this.router.navigateByUrl('');
             },
             (error) => {
                 switch (error.error.error.message) {
