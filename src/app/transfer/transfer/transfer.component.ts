@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TransferService } from '../transfer.service';
 import { DestAccount } from 'src/model/DestAccount';
 import { Account } from 'src/model/Account';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-transfer',
@@ -9,6 +11,9 @@ import { Account } from 'src/model/Account';
   styleUrls: ['./transfer.component.css']
 })
 export class TransferComponent implements OnInit {
+
+  user$: Observable<any>;
+  
   /*
     TODO: Account será pego do login, tirar esse código após implementação do login
   */
@@ -33,9 +38,12 @@ export class TransferComponent implements OnInit {
 
   transferValue = null;
 
-  constructor(private transferService: TransferService) { }
+  constructor(private transferService: TransferService,
+              private authService: AuthService) { }
   
   ngOnInit() {
+    this.authService.checkToken();
+    this.user$ = this.authService.currentUser;
   }
 
   checkDestAccount() {
