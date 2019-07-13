@@ -11,10 +11,18 @@ import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
-    { path: '', component: LoggedComponent },
-    { path: 'extract', component: ExtractComponent },
-    { path: 'home', component: HomeComponent },
-    { path: 'transfer', component: TransferComponent },
+    {
+        path: '', component: LoggedComponent,
+        children: [
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', component: HomeComponent },
+            { path: 'extract', component: ExtractComponent },
+            { path: 'transfer', component: TransferComponent }
+        ]
+    },
+    // { path: 'extract', component: ExtractComponent },
+    // { path: 'home', component: HomeComponent },
+    // { path: 'transfer', component: TransferComponent },
 ];
 
 @NgModule({

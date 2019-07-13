@@ -1,6 +1,8 @@
 <app-header></app-header>
-<app-menu></app-menu>
-<!-- <a routerLink="/logged/home">Home</a> -->
-<!-- <button (click)="send()"></button> -->
-<router-outlet></router-outlet>
+<div class="wrapper">
+    <app-menu></app-menu>
+    <div class="child-wrapper">
+        <router-outlet></router-outlet>
+    </div>
+</div>
 <!-- <h1 *ngIf="user$ | async">Elite Bank - {{ (user$ | async).balance  }} - {{ (user$ | async).name }}</h1> -->
