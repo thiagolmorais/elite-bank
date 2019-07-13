@@ -18,7 +18,7 @@ const routes: Routes = [
     declarations: [
         LoggedComponent,
         HomeComponent,
-        TransferComponent
+        TransferComponent,
         ExtractComponent
     ],
     imports: [
