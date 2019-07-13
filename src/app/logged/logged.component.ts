@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-logged',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoggedComponent implements OnInit {
 
-  constructor() { }
+  user$: Observable<any>;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+
+    this.user$ = this.authService.correntUser;
   }
 
 }

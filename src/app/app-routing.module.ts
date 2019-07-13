@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
     { path: '', component: AppComponent },
-    { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+    { path: 'login', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
     { path: 'logged', loadChildren: () => import('./logged/logged.module').then(m => m.LoggedModule) },
     { path: 'transfer', loadChildren: () => import('./transfer/transfer.module').then(m => m.TransferModule) },
 ];

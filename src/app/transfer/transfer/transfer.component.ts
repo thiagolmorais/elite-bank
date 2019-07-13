@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TransferService } from '../transfer.service';
-import { DestAccount } from '../../typings/DestAccount';
-import { Account } from '../../typings/Account';
+import { DestAccount } from 'src/model/DestAccount';
+import { Account } from 'src/model/Account';
 
 @Component({
   selector: 'app-transfer',
