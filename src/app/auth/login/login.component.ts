@@ -26,11 +26,16 @@ export class LoginComponent implements OnInit {
     // }
 
     ngOnInit() {
+        // Caso já esteja logado, redireciona para logged
+        const token = localStorage.getItem('token');
+        if(token) {
+            this.router.navigateByUrl('/logged');
+        }
+
         let minValue = 0;
         let maxValue = 9;
         this.loginData = { account: null, password: [] };
         this.randomNumbers = generateKeyboardNumbers(minValue, maxValue);
-        console.log(this.randomNumbers)
     }
 
     addPasswordNumber(randomNumber: number) {
@@ -48,49 +53,40 @@ export class LoginComponent implements OnInit {
     login() {
         this.dataLoading = true;
         this.authService.login(this.loginData.account, this.loginData.password)
-            .subscribe((value: any) => {
-                console.log(value);
+            .subscribe((dados: any) => {
+                
+                const { response, message } = dados;
+                if(!response) {
+                    alert(`Erro: ${message}`);
+                    this.dataLoading = false;
+                    return;
+                }
 
-                //   alert('Login efetuado com sucesso!!!');
-                //   localStorage.setItem('token', value.idToken);
+                const { account, balance, name, userToken } = message;
 
-                //   this.authService.setUser({
-                //     id: value.localId,
-                //     email: value.email,
-                //   });
-
-                //   this.router.navigateByUrl('/');
-            },
-                (error) => {
-                    switch (error.error.error.message) {
-                        case 'EMAIL_NOT_FOUND':
-                            alert('E-mail não encontrado');
-                            break;
-                        case 'INVALID_PASSWORD':
-                            alert('Senha inválida');
-                            break;
-                        default:
-                            alert('Houve um erro');
-                            break;
-                    }
+                localStorage.setItem('token', userToken);
+                localStorage.setItem('account', account);
+                
+                this.authService.setUser({
+                    balance: balance,
+                    name: name,
                 });
 
-        // .then((value: any) => {
-        //     alert('Login efetuado com sucesso!!!');
-        //     localStorage.setItem('token', value.token);
-
-        //     this.authService.setUser({
-        //         name: value.name,
-        //         email: value.email,
-        //         account: value.account
-        //     });
-
-        //     this.router.navigateByUrl('/');
-        // })
-        // .catch((error) => {
-        //     alert(error);
-        //     console.log(error);
-        // });
+                this.router.navigateByUrl('');
+            },
+            (error) => {
+                switch (error.error.error.message) {
+                    case 'EMAIL_NOT_FOUND':
+                        alert('E-mail não encontrado');
+                        break;
+                    case 'INVALID_PASSWORD':
+                        alert('Senha inválida');
+                        break;
+                    default:
+                        alert('Houve um erro');
+                        break;
+                }
+            });
     }
 
 }
