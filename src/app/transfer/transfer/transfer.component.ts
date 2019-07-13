@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TransferService } from '../transfer.service';
-import { DestAccount } from '../../typings/DestAccount';
-import { Account } from '../../typings/Account';
-import { log } from 'util';
+import { DestAccount } from 'src/model/DestAccount';
+import { Account } from 'src/model/Account';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-transfer',
@@ -13,9 +14,12 @@ export class TransferComponent implements OnInit {
   /*
     TODO: Account será pego do login, tirar esse código após implementação do login
   */
+
+  user$: Observable<any>;
+
   account: Account = {
-    id: 1002,
-    account: 1002,
+    id: 100002,
+    account: 100002,
     name: "Correntista da Silva",
     password: "123456",
     balance: 120.00,
@@ -34,7 +38,7 @@ export class TransferComponent implements OnInit {
 
   transferValue = null;
 
-  constructor(private transferService: TransferService) { }
+  constructor(private transferService: TransferService, private authService: AuthService) { }
   
   ngOnInit() {
   }
@@ -52,6 +56,7 @@ export class TransferComponent implements OnInit {
 
   transfer() {
     this.transferService.transferValue(this.account.account, this.destAccount.account, this.transferValue).subscribe((payload) => {
+      console.log(payload)
     })
   }
 }
