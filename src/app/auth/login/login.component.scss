@@ -4,14 +4,15 @@
     // https://ix-cdn.brightedge.com/images/43431/43431_1e46749714f941a2a8eb326fa1ab7439_1505352510.jpg
     // https://backgrounddownload.com/wp-content/uploads/2018/09/banking-background-images-1.jpg
     background-size: cover;
-    // opacity: 0.8;
     box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.2);
+    overflow-x: hidden;
 }
 
 .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 80%;
 
     > .content-container {
         display: flex;
@@ -29,6 +30,7 @@
             color: black;
             // text-shadow: 1px 0px 0px #000;
             font-weight: bold;
+            margin-right: 20px;
             // max-height: 100%;
         }
 
@@ -56,6 +58,10 @@
 
             .form-login {
                 padding: 10px 22px;
+            }
+
+            .alert {
+                margin-top: -30px;
             }
             
             .form-group {
@@ -97,43 +103,108 @@
             }
             
             .numbers {
+                width: 90px;
+                height: 45px;
                 margin: 0px 0px 12px 0px;
             }
             
             .btn {
-                width: 90px;
-                height: 45px;
+                width: 100%;
+                height: 100%;
                 transition: all 100ms linear;
             }
             
             .btn:active {
                 transform: scale(.9);
             }
+
             .btnDelete {
                 background-color: red;
                 border-color: red;
             }
             
             .btnSubmit {
-                // width: 100%;
                 background-color: green;
                 border-color: green;
             }
 
             .forgot-password {
-                width: 70%;
-                padding-left: 18px;
+                width: 64.5%;
+            }
+
+            .submit-number {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
             }
         }
     }
 }
 
-input:disabled {
+input:read-only {
     background-color: inherit;
+}
+
+@media screen and (max-width: 1000px) {
+    .image-container {
+        height: initial;
+    }
+    .login-container {
+        height: initial;
+        > .content-container {
+            flex-direction: column-reverse;
+
+            > .form-container {
+                width: 100%;
+
+                .control-numbers {
+                    width: 100%;
+
+                    .numbers {
+                        width: 30%;
+                    }
+                }
+
+                .submit-number {
+                    flex-direction: column;
+
+                    > .numbers {
+                        width: 100%;
+                    }
+                }
+            }
+
+            > .info-container {
+                width: 100%;
+                margin-right: 0;
+                margin-top: 20px;
+            }
+        }
+
+    }
+
+}
+
+@media screen and (max-width: 540px) {
+    .login-container {
+        .content-container {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
 }
 
 @media screen and (max-height: 600px) {
     .image-container {
-        height: 600px;
+        overflow-y: auto;
+    }
+}
+
+@media screen and (max-height: 530px) {
+    .image-container {
+        height: initial;
+    }
+    .login-container {
+        height: initial;
     }
 }
