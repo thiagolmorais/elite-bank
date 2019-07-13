@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { TransferComponent } from './transfer/transfer.component';
 import { FormsModule } from '@angular/forms';
 import { ExtractComponent } from './extract/extract.component';
+import { HeaderComponent } from './header/header.component';
+import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
     { path: '', component: LoggedComponent },
@@ -20,7 +22,9 @@ const routes: Routes = [
         LoggedComponent,
         HomeComponent,
         TransferComponent,
-        ExtractComponent
+        ExtractComponent,
+        HeaderComponent,
+        MenuComponent
     ],
     imports: [
         CommonModule,

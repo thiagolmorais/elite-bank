@@ -1,0 +1,15 @@
+<nav class="menu">
+    <div class="bank-name">
+        EliteBanking
+    </div>
+    <div class="user-info">
+        
+    </div>
+    <nav class="menu-links">
+        <div *ngFor="let link of menuLinks">
+            <a routerLink="{{ link.route }}">
+                <div class="item-link">{{ link.name }}</div>
+            </a>
+        </div>
+    </nav>
+</nav>
