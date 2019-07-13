@@ -56,7 +56,7 @@ export class TransferComponent implements OnInit {
     this.transferService.transferValue(this.accountNumber, this.destAccount.account, this.transferValue).subscribe((resp: any) => {
       const { message } = resp
       alert(message)
-      return this.router.navigateByUrl('logged/extract');; 
+      return this.router.navigateByUrl('/extract'); 
     });
   }
 }
