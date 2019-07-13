@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TransferService } from '../transfer.service';
 import { DestAccount } from 'src/model/DestAccount';
-import { Account } from 'src/model/Account';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transfer',
@@ -32,7 +32,8 @@ export class TransferComponent implements OnInit {
   transferValue = null;
   
   constructor(private transferService: TransferService,
-    private authService: AuthService) { }
+    private authService: AuthService, 
+    private router: Router) { }
   
     ngOnInit() {
       this.authService.checkToken();
@@ -54,7 +55,8 @@ export class TransferComponent implements OnInit {
   transfer() {
     this.transferService.transferValue(this.accountNumber, this.destAccount.account, this.transferValue).subscribe((resp: any) => {
       const { message } = resp
-      return alert(message); 
+      alert(message)
+      return this.router.navigateByUrl('/extract'); 
     });
   }
 }
