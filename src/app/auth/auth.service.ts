@@ -42,6 +42,8 @@ export class AuthService {
         const { response, message } = dados;
         if(!response) {
             alert(`Erro: ${message}`);
+            localStorage.removeItem('token');
+            localStorage.removeItem('account');
             this.router.navigateByUrl('/login');
             return;
         }

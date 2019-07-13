@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TransferService } from '../transfer.service';
+import { TransferService } from './transfer.service';
 import { DestAccount } from 'src/model/DestAccount';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Observable } from 'rxjs';
