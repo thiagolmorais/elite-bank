@@ -26,8 +26,6 @@ export class ExtractComponent implements OnInit {
   extract() {
     this.extractService.getExtracts(this.accountNumber).subscribe((resp: any) => {
       this.extractAccount = resp
-      console.log(this.extractAccount)
-      return this.extractAccount
     });
   }
 }
