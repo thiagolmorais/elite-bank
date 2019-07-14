@@ -33,8 +33,9 @@ export class AuthService {
 
     if (!token || !account) {
       localStorage.clear();
+      this.pUser.next(null);
+      this.router.navigateByUrl('/login');
 
-        this.router.navigateByUrl('/login');
     } else {
       return this.httpClient.post(`${ELITE_BANK_API}/checktoken`, {
         account: account,
@@ -44,6 +45,7 @@ export class AuthService {
         const { response, message } = dados;
         if(!response) {
             localStorage.clear();
+            this.pUser.next(null);
             this.router.navigateByUrl('/login');
             return;
         }
@@ -69,7 +71,7 @@ export class AuthService {
     })
     .subscribe(() => {
       localStorage.clear();
-      
+      this.pUser.next(null);
       this.router.navigateByUrl('/login');
     });
   };
