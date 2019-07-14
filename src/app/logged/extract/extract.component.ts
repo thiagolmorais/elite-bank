@@ -20,8 +20,7 @@ export class ExtractComponent implements OnInit {
   ngOnInit() {
     this.authService.checkToken();
     this.user$ = this.authService.currentUser;
-    this.accountNumber = localStorage.getItem('account')
-    this.extract()
+    this.accountNumber = localStorage.getItem('account');
   }
 
   extract() {
