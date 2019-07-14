@@ -33,6 +33,7 @@ export class AuthService {
 
     if (!token || !account) {
       localStorage.clear();
+
         this.router.navigateByUrl('/login');
     } else {
       return this.httpClient.post(`${ELITE_BANK_API}/checktoken`, {
