@@ -21,11 +21,16 @@ export class ExtractComponent implements OnInit {
     this.authService.checkToken();
     this.user$ = this.authService.currentUser;
     this.accountNumber = localStorage.getItem('account')
+    this.extract()
   }
 
   extract() {
     this.extractService.getExtracts(this.accountNumber).subscribe((resp: any) => {
-      this.extractAccount = resp
+      const {response, message} = resp;
+      if(!response) {
+        alert('Erro: ' + message);
+      }
+      this.extractAccount = message;
     });
   }
 }

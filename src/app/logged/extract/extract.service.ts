@@ -11,6 +11,7 @@ export class ExtractService {
   constructor(private httpClient: HttpClient) { }
 
   getExtracts(accountNumber) {
-    return this.httpClient.get(`${ELITE_BANK_API}/accounts/${accountNumber}/transfers`);
+    const token = localStorage.getItem('token');
+    return this.httpClient.get(`${ELITE_BANK_API}/accounts/${accountNumber}/transfers/${token}`);
   }
 }
