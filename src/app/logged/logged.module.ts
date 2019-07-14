@@ -7,9 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { TransferComponent } from './transfer/transfer.component';
 import { FormsModule } from '@angular/forms';
 import { ExtractComponent } from './extract/extract.component';
-import { FormAuthenticationComponent } from '../form-authentication/form-authentication.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
+import { ReuseComponentModule } from '../reuse-component/reuse-component.module';
 
 const routes: Routes = [
     {
@@ -34,11 +34,11 @@ const routes: Routes = [
         ExtractComponent,
         HeaderComponent,
         MenuComponent,
-        FormAuthenticationComponent,
     ],
     imports: [
         CommonModule,
         FormsModule,
+        ReuseComponentModule,
         RouterModule.forChild(routes)
     ]
 })
