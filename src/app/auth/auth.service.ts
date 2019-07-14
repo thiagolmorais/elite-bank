@@ -35,6 +35,7 @@ export class AuthService {
       localStorage.clear();
       this.pUser.next(null);
       this.router.navigateByUrl('/login');
+
     } else {
       return this.httpClient.post(`${ELITE_BANK_API}/checktoken`, {
         account: account,
