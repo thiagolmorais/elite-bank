@@ -31,7 +31,8 @@ export class AuthService {
     const token = localStorage.getItem('token');
     const account = localStorage.getItem('account');
 
-    if (!token) {
+    if (!token || !account) {
+      localStorage.clear();
         this.router.navigateByUrl('/login');
     } else {
       return this.httpClient.post(`${ELITE_BANK_API}/checktoken`, {
@@ -41,9 +42,7 @@ export class AuthService {
       .subscribe((dados: any) => {
         const { response, message } = dados;
         if(!response) {
-            alert(`Erro: ${message}`);
-            localStorage.removeItem('token');
-            localStorage.removeItem('account');
+            localStorage.clear();
             this.router.navigateByUrl('/login');
             return;
         }
@@ -68,8 +67,7 @@ export class AuthService {
       token: token
     })
     .subscribe(() => {
-      localStorage.removeItem('token');
-      localStorage.removeItem('account');
+      localStorage.clear();
       
       this.router.navigateByUrl('/login');
     });

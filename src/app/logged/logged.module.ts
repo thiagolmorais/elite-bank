@@ -9,9 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { ExtractComponent } from './extract/extract.component';
 
 const routes: Routes = [
-    { path: '', component: LoggedComponent },
-    { path: 'extract', component: ExtractComponent },
+    { path: '', component: HomeComponent },
     { path: 'home', component: HomeComponent },
+    { path: 'extract', component: ExtractComponent },
     { path: 'transfer', component: TransferComponent },
 ];
 
