@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { log } from 'util';
+import { Login } from 'src/model/login';
 
 @Component({
   selector: 'app-transfer',
@@ -14,6 +15,10 @@ import { log } from 'util';
 export class TransferComponent implements OnInit {
 
   user$: Observable<any>;
+
+  loginData: Login = { account: null, password: [] };
+  dataLoading: Boolean = false;
+  errorMessage: String = "";
   
   /*
     TODO: Account será pego do login, tirar esse código após implementação do login

@@ -1,4 +1,4 @@
-<div *ngIf="this.destAccount.account; else withAccount">
+<!-- <div *ngIf="this.destAccount.account; else withAccount">
     <p>Conta destino: {{this.destAccount.account}}</p>
     <p>Nome do destinatário: {{this.destAccount.name}}</p>
 
@@ -17,4 +17,52 @@
         </div>
         <button (click)="checkDestAccount()">Próximo</button>
     </form>
-</ng-template>
+</ng-template> -->
+
+<section class="transfer-form">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <div class="value-info">
+            <h3>
+              Saldo Atual
+            </h3>
+            <div class="price text-right">R$ 1,800,000</div>
+          </div>
+        </div>
+        <div class="col-md-8 col-sm-12">
+        <form>
+          <div class="card-details">
+            <h3 class="title">Elite Bank - Transferencias</h3>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <label for="card-number">Número da Conta:</label>
+                <input id="card-number" type="text" class="form-control" placeholder="0000000" aria-label="Inserir nome" aria-describedby="basic-addon1">
+              </div>
+              <div class="form-group col-sm-7">
+                <label for="teste">Valor</label>
+                <input id="card-number" type="text" class="form-control" placeholder="R$000,00" aria-label="Card Holder" aria-describedby="basic-addon1">
+              </div>
+              <div class="form-group col-sm-5">
+                <label for="cvv">Banco</label>
+                <select name="" id="" class="form-control">
+                  <option value="">Elite Bank</option>
+                </select>
+              </div>
+              <div class="form-group col-sm-12">
+                <button type="button" class="btn btn-primary btn-block">Enviar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        </div>
+        <app-form-authentication class="col-md-12 col-sm-12"
+            [dataLoading]="dataLoading"
+            [errorMessage]="errorMessage"
+            [loginData]="loginData">
+        </app-form-authentication>
+      </div>
+    </div>
+  </div>
+</section>

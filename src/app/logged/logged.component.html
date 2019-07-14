@@ -1,4 +1,8 @@
-<p>logged works!</p>
-<button class="btn btn-danger" (click)="logout()">Sair</button>
-
+<app-header></app-header>
+<div class="wrapper">
+    <app-menu></app-menu>
+    <div class="child-wrapper">
+        <router-outlet></router-outlet>
+    </div>
+</div>
 <!-- <h1 *ngIf="user$ | async">Elite Bank - {{ (user$ | async).balance  }} - {{ (user$ | async).name }}</h1> -->

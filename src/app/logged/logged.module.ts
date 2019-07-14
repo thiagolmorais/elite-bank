@@ -7,12 +7,23 @@ import { HomeComponent } from './home/home.component';
 import { TransferComponent } from './transfer/transfer.component';
 import { FormsModule } from '@angular/forms';
 import { ExtractComponent } from './extract/extract.component';
+import { HeaderComponent } from './header/header.component';
+import { MenuComponent } from './menu/menu.component';
+import { ReuseComponentModule } from '../reuse-component/reuse-component.module';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'home', component: HomeComponent },
-    { path: 'extract', component: ExtractComponent },
-    { path: 'transfer', component: TransferComponent },
+    {
+        path: '', component: LoggedComponent,
+        children: [
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', component: HomeComponent },
+            { path: 'extract', component: ExtractComponent },
+            { path: 'transfer', component: TransferComponent }
+        ]
+    },
+    // { path: 'extract', component: ExtractComponent },
+    // { path: 'home', component: HomeComponent },
+    // { path: 'transfer', component: TransferComponent },
 ];
 
 @NgModule({
@@ -20,11 +31,14 @@ const routes: Routes = [
         LoggedComponent,
         HomeComponent,
         TransferComponent,
-        ExtractComponent
+        ExtractComponent,
+        HeaderComponent,
+        MenuComponent,
     ],
     imports: [
         CommonModule,
         FormsModule,
+        ReuseComponentModule,
         RouterModule.forChild(routes)
     ]
 })

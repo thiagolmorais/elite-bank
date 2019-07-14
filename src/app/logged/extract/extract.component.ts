@@ -23,6 +23,7 @@ export class ExtractComponent implements OnInit {
     this.user$ = this.authService.currentUser;
     this.token = localStorage.getItem('token');
     this.accountNumber = localStorage.getItem('account');
+    this.extract()
   }
 
   extract() {

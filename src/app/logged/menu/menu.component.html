@@ -1,0 +1,21 @@
+<nav class="menu">
+    <div class="bank-name">
+        EliteBanking
+    </div>
+    <div class="user-info">
+        
+    </div>
+    <nav class="menu-links">
+        <div *ngFor="let link of menuLinks">
+            <a routerLink="{{ link.route }}">
+                <div class="item-link">{{ link.name }}</div>
+            </a>
+        </div>
+        <div>
+            <div [ngStyle]="{'border-bottom': '1px solid #c6c6c6'}"></div>
+        </div>
+        <div>
+            <div class="item-link text-white" [ngStyle]="{'cursor': 'pointer'}" (click)="logout()">Sair</div>
+        </div>
+    </nav>
+</nav>
