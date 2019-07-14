@@ -31,7 +31,7 @@ export class AuthService {
     const token = localStorage.getItem('token');
     const account = localStorage.getItem('account');
 
-    if (!token) {
+    if(!token) {
         this.router.navigateByUrl('/login');
     } else {
       return this.httpClient.post(`${ELITE_BANK_API}/checktoken`, {
