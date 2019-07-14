@@ -4,6 +4,7 @@ import { DestAccount } from 'src/model/DestAccount';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { log } from 'util';
 
 @Component({
   selector: 'app-transfer',
@@ -30,6 +31,10 @@ export class TransferComponent implements OnInit {
   destAccountNumber = null;
   
   transferValue = null;
+
+  token = null;
+
+  password = null;
   
   constructor(private transferService: TransferService,
     private authService: AuthService, 
@@ -39,9 +44,14 @@ export class TransferComponent implements OnInit {
       this.authService.checkToken();
       this.user$ = this.authService.currentUser;
       this.accountNumber = localStorage.getItem('account')
+      this.token = localStorage.getItem('token')
   }
 
   checkDestAccount() {
+    if(this.accountNumber === this.destAccountNumber) {
+      alert('Não é possivel fazer uma tranferência em sua própria conta!')
+      return;
+    }
     this.transferService.destAccount(this.destAccountNumber).subscribe((resp: any) => {
       const { response, message } = resp
       if(response) {
@@ -53,7 +63,7 @@ export class TransferComponent implements OnInit {
   }
 
   transfer() {
-    this.transferService.transferValue(this.accountNumber, this.destAccount.account, this.transferValue).subscribe((resp: any) => {
+    this.transferService.transferValue(this.password, this.token, this.accountNumber, this.destAccount.account, this.transferValue).subscribe((resp: any) => {
       const { message } = resp
       alert(message)
       return this.router.navigateByUrl('/extract'); 

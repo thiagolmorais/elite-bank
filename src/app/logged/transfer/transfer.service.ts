@@ -13,8 +13,10 @@ export class TransferService {
     return this.httpClient.get(`${ELITE_BANK_API}/accounts/${accountNumber}`);
   }
 
-  transferValue(originAccountNumber, destAccountNumber, transferValue) {
+  transferValue(password, token, originAccountNumber, destAccountNumber, transferValue) {
     return this.httpClient.post(`${ELITE_BANK_API}/transfer`, {
+      password: password,
+      userToken: token,
       origin: originAccountNumber,
       destination: destAccountNumber,
       value: parseInt(transferValue)

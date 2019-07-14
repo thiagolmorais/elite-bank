@@ -31,49 +31,49 @@ export class AuthService {
     checkToken() {
         const token = localStorage.getItem('token');
         const account = localStorage.getItem('account');
-
-        if (!token) {
+    
+        if (!token || !account) {
+            localStorage.clear();
+            this.pUser.next(null);
             this.router.navigateByUrl('/login');
         } else {
             return this.httpClient.post(`${ELITE_BANK_API}/checktoken`, {
                 account: account,
                 token: token
             })
-                .subscribe((dados: any) => {
-                    const { response, message } = dados;
-                    if (!response) {
-                        alert(`Erro: ${message}`);
-                        localStorage.removeItem('token');
-                        localStorage.removeItem('account');
-                        this.router.navigateByUrl('/login');
-                        return;
-                    }
-
-                    const { account, balance, name } = message;
-
-                    this.setUser({
-                        name: name,
-                        balance: balance,
-                        account: account
-                    });
+            .subscribe((dados: any) => {
+                const { response, message } = dados;
+                if(!response) {
+                    localStorage.clear();
+                    this.pUser.next(null);
+                    this.router.navigateByUrl('/login');
+                    return;
+                }
+        
+                const { account, balance, name } = message;
+        
+                this.setUser({
+                    name: name,
+                    balance: balance,
+                    account: account
                 });
+            });
         }
-    };
+    }
 
     logout() {
         const token = localStorage.getItem('token');
         const account = localStorage.getItem('account');
-
-        this.httpClient.post(`${ELITE_BANK_API}/logout`, {
+    
+            this.httpClient.post(`${ELITE_BANK_API}/logout`, {
             account: account,
             token: token
         })
-            .subscribe(() => {
-                localStorage.removeItem('token');
-                localStorage.removeItem('account');
-
-                this.router.navigateByUrl('/login');
-            });
+        .subscribe(() => {
+            localStorage.clear();
+            this.pUser.next(null);
+            this.router.navigateByUrl('/login');
+        });
     };
 
 }
