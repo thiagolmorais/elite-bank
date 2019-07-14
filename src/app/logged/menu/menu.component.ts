@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-menu',
@@ -7,6 +8,8 @@ import { AuthService } from 'src/app/auth/auth.service';
     styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+
+    user$: Observable<any>;
 
     menuLinks: Array<any> = [
         { name: "Home", route: "/home" },
@@ -17,6 +20,7 @@ export class MenuComponent implements OnInit {
     constructor(private authService: AuthService) { }
 
     ngOnInit() {
+        this.user$ = this.authService.currentUser;
     }
 
     logout() {
