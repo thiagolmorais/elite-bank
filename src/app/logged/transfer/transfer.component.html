@@ -18,3 +18,9 @@
         <button (click)="checkDestAccount()">Próximo</button>
     </form>
 </ng-template>
+
+<app-form-authentication
+                    [dataLoading]="dataLoading"
+                    [errorMessage]="errorMessage"
+                    [loginData]="loginData">
+                </app-form-authentication>
