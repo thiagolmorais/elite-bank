@@ -3,7 +3,7 @@
         EliteBanking
     </div>
     <div class="user-info">
-        Olá, {{ (user$ | async).name }}
+        Olá, {{ (user$ | async)?.name }}
     </div>
     <nav class="menu-links">
         <div *ngFor="let link of menuLinks">
