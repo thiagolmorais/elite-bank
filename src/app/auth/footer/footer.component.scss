@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10%;
+    height: 60px;
     background-color: #4f4d4da8;
     // position: absolute;
     color: white;
@@ -12,9 +12,9 @@ a {
     color: inherit;
 }
 
-@media screen and (max-height: 530px), screen and (max-width: 1000px) {
-    .footer {
-        margin-top: 20px;
-        height: 60px;
-    }
-}
+// @media screen and (max-height: 530px), screen and (max-width: 1000px) {
+//     .footer {
+//         margin-top: 20px;
+//         height: 60px;
+//     }
+// }

@@ -1,87 +1,32 @@
-<div class="image-container">
+<div class="login-wrapper">
     <app-header></app-header>
     <div class="login-container">
         <div class="content-container">
-            <div class="info-container">
-                <h1>SAIBA COMO USAR</h1>
-    
-                <p>Em seu primeiro acesso crie um usuário (conta) e uma senha Internet Banking na opção CADASTRO. Os dados (nome, CPF e data de nascimento) devem ser informados conforme cadastro na Receita Federal. Dessa forma você estará apto para realizar transferência, visualizar extrato e muitos mais.</p>
-                <p>A senha é composta por 6 dígitos numéricos e a conta é criada automaticamente no seu primeiro acesso.</p>
-                <p>Caso tenha esquecido sua senha, basta digitar seu usuário e clicar na opção Esqueceu sua senha, para que um link seja enviado ao e-mail cadastrado para geração de nova senha.</p>
-            </div>
             <div class="form-container">
                 <nav class="navbar navbar-light bg-light">
                     <div class="div-navbar -active">
                         <a class="navbar-brand" href="#">Login</a>
                     </div>
-                    <div class="div-navbar">
+                    <!-- <div class="div-navbar">
                         <a class="navbar-brand" href="#">Cadastro</a>
-                    </div>
+                    </div> -->
                 </nav>
-                <form class="form-login" #formLogin="ngForm">
-                    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
-                        {{errorMessage}}
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input placeholder="Digite sua conta"
-                                   type="text"
-                                   id="account"
-                                   name="account"
-                                   class="bank-input form-control text-muted"
-                                   [(ngModel)]="loginData.account"
-                                   maxlength="7"
-                                   minlength="6"
-                                   inputmode="numeric"
-                                   pattern="[0-9]*"
-                                   onkeypress="return event.keyCode != 13"
-                                   appDigitOnly
-                                   required>
-                            <i class="icon fa fa-user"></i>
-                        </div>    
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input placeholder="******"
-                                   type="password"
-                                   id="password"
-                                   name="password"
-                                   class="bank-input form-control text-muted"
-                                   [(ngModel)]="password"
-                                   maxlength="6"
-                                   minlength="6"
-                                   inputmode="numeric"
-                                   pattern="[0-9]*"
-                                   readonly
-                                   onkeypress="return false"
-                                   required>
-                            <i class="icon fa fa-lock"></i>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="control-numbers">
-                            <div class="numbers" *ngFor="let randomNumber of randomNumbers">
-                                <button class="btn btn-primary" (click)="addPasswordNumber(randomNumber)">{{randomNumber[0]}} ou {{randomNumber[1]}}</button>                                
-                            </div>
-                            <div class="numbers">
-                                <button class="btnDelete btn btn-primary" (click)="deletePassword()">DEL</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="submit-number">
-                            <div class="numbers">
-                                <button *ngIf="!dataLoading" class="btnSubmit btn btn-primary" (click)="login()" [disabled]="formLogin.invalid">Enviar</button>
-                                <button *ngIf="dataLoading" class="btnSubmit btn btn-primary">
-                                    <span class="spinner-border spinner-border-sm"></span>
-                                        <!-- Enviando... -->
-                                </button>
-                            </div>
-                            <small class="forgot-password">Esqueceu sua senha? <br><a href="#">Clique aqui</a> para redefinir.</small>
-                        </div>
-                    </div>
-                </form>
+                <app-form-authentication
+                    [dataLoading]="dataLoading"
+                    [errorMessage]="errorMessage"
+                    [loginData]="loginData"
+                    (loginEvent)="login()">
+                </app-form-authentication>
             </div>
+        </div>
+    </div>
+    <div class="info-container">
+        <div class="info-content">
+            <h1>SAIBA COMO USAR</h1>
+    
+            <p>Para acessar o internet banking do Elite Banking basta inserir sua conta e a senha cadastradado em um de nossos caixa eletrônicos.</p>
+            <p>A senha é composta por 6 dígitos numéricos e a conta é criada automaticamente em um de nossos caixas.</p>
+            <p>Caso tenha esquecido sua senha, basta digitar seu usuário e clicar na opção Esqueceu sua senha, para que um link seja enviado ao e-mail cadastrado para geração de nova senha.</p>
         </div>
     </div>
     <app-footer></app-footer>

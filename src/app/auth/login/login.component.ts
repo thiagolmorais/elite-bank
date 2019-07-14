@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { generateKeyboardNumbers } from 'src/utils/utils';
 import { Login } from 'src/model/login';
 
 @Component({
@@ -11,7 +10,6 @@ import { Login } from 'src/model/login';
 })
 export class LoginComponent implements OnInit {
 
-    randomNumbers: Array<number> = [];
     loginData: Login = { account: null, password: [] };
     password: String = "";
     dataLoading: Boolean = false;
@@ -20,44 +18,23 @@ export class LoginComponent implements OnInit {
     constructor(private authService: AuthService,
         private router: Router) { }
 
-    // LoginData = {
-    //     account: '98765',
-    //     password: '123456'
-    // }
-
     ngOnInit() {
         // Caso já esteja logado, redireciona para logged
         const token = localStorage.getItem('token');
-        if(token) {
+        if (token) {
             this.router.navigateByUrl('/logged');
         }
-
-        let minValue = 0;
-        let maxValue = 9;
-        this.loginData = { account: null, password: [] };
-        this.randomNumbers = generateKeyboardNumbers(minValue, maxValue);
-    }
-
-    addPasswordNumber(randomNumber: number) {
-        if (this.loginData.password.length < 6) {
-            this.loginData.password.push(randomNumber);
-            this.password += "0";
-        }
-    }
-
-    deletePassword() {
-        this.loginData.password.pop();
-        this.password = this.password.slice(0, -1);
     }
 
     login() {
+        this.errorMessage = '';
         this.dataLoading = true;
-        this.authService.login(this.loginData.account, this.loginData.password)
+        this.authService.login(this.loginData)
             .subscribe((dados: any) => {
-                
+
                 const { response, message } = dados;
-                if(!response) {
-                    alert(`Erro: ${message}`);
+                if (!response) {
+                    this.errorMessage = `Erro: ${message}`;
                     this.dataLoading = false;
                     return;
                 }
@@ -66,27 +43,20 @@ export class LoginComponent implements OnInit {
 
                 localStorage.setItem('token', userToken);
                 localStorage.setItem('account', account);
-                
+
                 this.authService.setUser({
                     balance: balance,
                     name: name,
                 });
 
+                this.dataLoading = false;
                 this.router.navigateByUrl('');
             },
-            (error) => {
-                switch (error.error.error.message) {
-                    case 'EMAIL_NOT_FOUND':
-                        alert('E-mail não encontrado');
-                        break;
-                    case 'INVALID_PASSWORD':
-                        alert('Senha inválida');
-                        break;
-                    default:
-                        alert('Houve um erro');
-                        break;
-                }
-            });
+                (error) => {
+                    this.dataLoading = false;
+                    this.errorMessage = "Ocorreu um erro.";
+                    console.error(error.statusText);
+                });
     }
 
 }

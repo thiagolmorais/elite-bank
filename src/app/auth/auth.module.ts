@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { DigitOnlyDirective } from '../../directives/digit-only.directive';
+import { FormAuthenticationComponent } from '../form-authentication/form-authentication.component';
 
 const routes: Routes = [
     { path: '', component: LoginComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
         LoginComponent,
         HeaderComponent,
         FooterComponent,
-        DigitOnlyDirective
+        DigitOnlyDirective,
+        FormAuthenticationComponent
     ],
     imports: [
         CommonModule,

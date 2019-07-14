@@ -4,76 +4,76 @@ import { BehaviorSubject } from 'rxjs';
 
 import { ELITE_BANK_API } from '../app.api';
 import { Router } from '@angular/router';
+import { Login } from 'src/model/login';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthService {
 
-  private pUser = new BehaviorSubject(null);
-  currentUser = this.pUser.asObservable();
+    private pUser = new BehaviorSubject(null);
+    currentUser = this.pUser.asObservable();
 
-  constructor(private httpClient: HttpClient,
-              private router: Router) { }
+    constructor(private httpClient: HttpClient,
+        private router: Router) { }
 
-  login(account, password) {
-    return this.httpClient.post(`${ELITE_BANK_API}/login`, {
-      account,
-      password
-    });
-  };
+    login(loginData: Login) {
+        return this.httpClient.post(`${ELITE_BANK_API}/login`, {
+            account: loginData.account,
+            password: loginData.password
+        });
+    };
 
-  setUser(user) {
-    this.pUser.next(user);
-  };
+    setUser(user) {
+        this.pUser.next(user);
+    };
 
-  checkToken() {
-    const token = localStorage.getItem('token');
-    const account = localStorage.getItem('account');
-
-    if (!token || !account) {
-      localStorage.clear();
-      this.pUser.next(null);
-      this.router.navigateByUrl('/login');
-
-    } else {
-      return this.httpClient.post(`${ELITE_BANK_API}/checktoken`, {
-        account: account,
-        token: token
-      })
-      .subscribe((dados: any) => {
-        const { response, message } = dados;
-        if(!response) {
+    checkToken() {
+        const token = localStorage.getItem('token');
+        const account = localStorage.getItem('account');
+    
+        if (!token || !account) {
             localStorage.clear();
             this.pUser.next(null);
             this.router.navigateByUrl('/login');
-            return;
+        } else {
+            return this.httpClient.post(`${ELITE_BANK_API}/checktoken`, {
+                account: account,
+                token: token
+            })
+            .subscribe((dados: any) => {
+                const { response, message } = dados;
+                if(!response) {
+                    localStorage.clear();
+                    this.pUser.next(null);
+                    this.router.navigateByUrl('/login');
+                    return;
+                }
+        
+                const { account, balance, name } = message;
+        
+                this.setUser({
+                    name: name,
+                    balance: balance,
+                    account: account
+                });
+            });
         }
-  
-        const { account, balance, name } = message;
-  
-        this.setUser({
-            name: name,
-            balance: balance,
-            account: account
-        });
-      });
     }
-  };
 
-  logout() {
-    const token = localStorage.getItem('token');
-    const account = localStorage.getItem('account');
-
-     this.httpClient.post(`${ELITE_BANK_API}/logout`, {
-      account: account,
-      token: token
-    })
-    .subscribe(() => {
-      localStorage.clear();
-      this.pUser.next(null);
-      this.router.navigateByUrl('/login');
-    });
-  };
+    logout() {
+        const token = localStorage.getItem('token');
+        const account = localStorage.getItem('account');
+    
+            this.httpClient.post(`${ELITE_BANK_API}/logout`, {
+            account: account,
+            token: token
+        })
+        .subscribe(() => {
+            localStorage.clear();
+            this.pUser.next(null);
+            this.router.navigateByUrl('/login');
+        });
+    };
 
 }
