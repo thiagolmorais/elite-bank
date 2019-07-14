@@ -8,12 +8,22 @@ import { TransferComponent } from './transfer/transfer.component';
 import { FormsModule } from '@angular/forms';
 import { ExtractComponent } from './extract/extract.component';
 import { FormAuthenticationComponent } from '../form-authentication/form-authentication.component';
+import { HeaderComponent } from './header/header.component';
+import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'home', component: HomeComponent },
-    { path: 'extract', component: ExtractComponent },
-    { path: 'transfer', component: TransferComponent },
+    {
+        path: '', component: LoggedComponent,
+        children: [
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', component: HomeComponent },
+            { path: 'extract', component: ExtractComponent },
+            { path: 'transfer', component: TransferComponent }
+        ]
+    },
+    // { path: 'extract', component: ExtractComponent },
+    // { path: 'home', component: HomeComponent },
+    // { path: 'transfer', component: TransferComponent },
 ];
 
 @NgModule({
@@ -22,7 +32,9 @@ const routes: Routes = [
         HomeComponent,
         TransferComponent,
         ExtractComponent,
-        FormAuthenticationComponent
+        HeaderComponent,
+        MenuComponent,
+        FormAuthenticationComponent,
     ],
     imports: [
         CommonModule,
