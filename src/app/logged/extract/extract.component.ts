@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Observable } from 'rxjs';
 import { ExtractService } from './extract.service';
+import { Extract } from 'src/model/extract';
 
 @Component({
   selector: 'app-extract',
@@ -12,7 +13,7 @@ export class ExtractComponent implements OnInit {
 
   user$: Observable<any>;
   accountNumber = null;
-  extractAccount = null;
+  extractAccount: Extract;
 
   constructor(private authService: AuthService, private extractService: ExtractService) { }
 
@@ -24,8 +25,8 @@ export class ExtractComponent implements OnInit {
 
   extract() {
     this.extractService.getExtracts(this.accountNumber).subscribe((resp: any) => {
-      console.log(resp)
       this.extractAccount = resp
+      console.log(this.extractAccount)
       return this.extractAccount
     });
   }
