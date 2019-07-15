@@ -1,27 +1,42 @@
-# EliteBank
+# Bem vindo ao Elite-bank
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.0.
+## Acesso
 
-## Development server
+Site -> https://elite-bank.herokuapp.com/login
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Configuração do ambiente
 
-## Code scaffolding
+### Instalação Node.js
+https://nodejs.org/en/
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Instalação Angular
+npm i -g @angular/cli
 
-## Build
+### Instalação dependências do projeto
+Obs: executar este comando dentro da pasta do projeto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+npm i  
 
-## Running unit tests
+## Rodando o projeto
+Obs: executar este comando dentro da pasta do projeto
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ng serve --open
 
-## Running end-to-end tests
+## Rodando os testes
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+ng test
 
-## Further help
+## Framework utilizados
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+node -> v10.16.0 <br>
+angular -> v8.1.0
+
+
+## Integrantes
+
+- Antônio Simões
+- Gustavo Ferreira
+- Ivonaldo Soares
+- Luiz Gustavo
+- Stenio Aguiar
+- Thiago Morais
