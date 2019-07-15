@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         // Caso já esteja logado, redireciona para logged
         const token = localStorage.getItem('token');
-        if (token) {
-            this.router.navigateByUrl('/logged');
+        if(token) {
+            this.router.navigateByUrl('');
         }
     }
 
