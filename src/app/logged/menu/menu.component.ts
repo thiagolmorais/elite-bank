@@ -9,10 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class MenuComponent implements OnInit {
 
+    imgSrc = '../../../assets/img/menu.png';
+    active: Boolean = false;
+
     user$: Observable<any>;
 
     menuLinks: Array<any> = [
-        { name: "Home", route: "/home" },
         { name: "Transferência", route: "/transfer" },
         { name: "Extrato", route: "/extract" }
     ];
@@ -27,4 +29,12 @@ export class MenuComponent implements OnInit {
         this.authService.logout();
     }
 
+    menuResponsive() {
+        this.active = !this.active;
+        if (this.active) {
+            this.imgSrc = '../../../assets/img/close.png';
+        } else {
+            this.imgSrc = '../../../assets/img/menu.png';
+        }
+    }
 }

@@ -3,21 +3,41 @@
     width: 250px;
     margin-top: -70px;
     background-color: grey;
+    transition: all 200ms linear;
+    z-index: 1000;
 
     > .bank-name {
         height: 70px;
-        background-color: orange;
+        background-color: #20bea0ff;
         font-style: italic;
+
+        > .burguer-menu{
+            transform: translateX(110px);
+            transition: all 200ms linear;
+
+            .menu-responsive {
+                width: 35px;
+                cursor: pointer;
+                display: none;
+            }
+        }
+
+        > .burguer-menu.active {
+            transform: translateX(50px);
+        }
     }
 
     > .bank-name, .user-info {
         display: flex;
         justify-content: center;
-        align-items: center; 
+        align-items: center;
     }
 
     > .user-info {
-        height: 200px;
+        height: 100px;
+        font-size: 14px;
+        color: #FFF;
+        border-bottom: 1px solid #FFF;
     }
 
     > .menu-links {
@@ -28,10 +48,37 @@
         .item-link:hover {
             background-color: #ffffff6e;
         }
-        
+
         a {
             text-decoration: none;
             color: white;
+        }
+    }
+}
+
+.menu.active {
+    transform: translateX(0px);
+}
+
+@media screen and (max-width: 765px) {
+    .menu {
+        transform: translateX(-250px);
+        position: absolute;
+        &::after {
+            content: '';
+            width: 250px;
+            height: 400px;
+            position: absolute;
+            // bottom: -1000px;
+            background: gray;
+            z-index: -1;
+        }
+        > .bank-name {
+            > .burguer-menu{
+                .menu-responsive {
+                    display: block;
+                }
+            }
         }
     }
 }

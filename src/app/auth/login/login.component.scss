@@ -1,5 +1,9 @@
 .login-wrapper {
     overflow-x: hidden;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100vh;
 
     > .login-container {
         display: flex;
@@ -8,7 +12,8 @@
         background: url('../../../assets/img/LoginImage.jpg') no-repeat center top fixed;
         background-size: cover;
         box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.2);
-    
+        height: 100%;
+
         > .content-container {
             display: flex;
             width: 1200px;
@@ -17,27 +22,27 @@
             padding-right: 70px;
             padding-top: 25px;
             padding-bottom: 25px;
-    
+
             > .form-container {
                 width: 350px;
                 box-shadow: 1px 1px 12px 0px #888888;
                 background-color: white;
-    
+
                 .div-navbar {
                     width: 100%;
                     display: flex;
                     justify-content: center;
                     padding: .5rem 1rem;
                 }
-                
+
                 .navbar-brand {
                     margin-right: 0;
                 }
-    
+
                 .div-navbar.-active {
                     background-color: white;
                 }
-    
+
                 .navbar {
                     padding: 0px;
                     margin-bottom: 30px;
@@ -51,8 +56,8 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        background-color: #f2dba3;
-        
+        background-color: #20bea0ff;
+
         > .info-content {
             width: 1200px;
             margin-top: 20px;
@@ -63,6 +68,16 @@
             // width: 65%;
             color: black;
             font-weight: bold;
+            .text-title {
+              font-weight: bold;
+            }
+            .text-info-container {
+              font-weight: lighter;
+              color: #000;
+              margin: 0px;
+              font-size: 14px;
+              line-height: 20px;
+            }
         }
     }
 }

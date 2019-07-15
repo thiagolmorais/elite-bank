@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoggedComponent } from './logged.component';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 
 import { TransferComponent } from './transfer/transfer.component';
 import { FormsModule } from '@angular/forms';
@@ -16,21 +15,16 @@ const routes: Routes = [
     {
         path: '', component: LoggedComponent,
         children: [
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', canActivate: [AuthGuard], component: HomeComponent },
+            { path: '', redirectTo: 'extract', pathMatch: 'full' },
             { path: 'extract', canActivate: [AuthGuard], component: ExtractComponent },
             { path: 'transfer', canActivate: [AuthGuard], component: TransferComponent }
         ]
     },
-    // { path: 'extract', component: ExtractComponent },
-    // { path: 'home', component: HomeComponent },
-    // { path: 'transfer', component: TransferComponent },
 ];
 
 @NgModule({
     declarations: [
         LoggedComponent,
-        HomeComponent,
         TransferComponent,
         ExtractComponent,
         HeaderComponent,
