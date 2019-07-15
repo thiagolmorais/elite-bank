@@ -14,12 +14,11 @@ export class ExtractComponent implements OnInit {
   user$: Observable<any>;
   accountNumber = null;
   token = null;
-  extractAccount: Extract;
+  extractAccount: Extract = null;
 
   constructor(private authService: AuthService, private extractService: ExtractService) { }
 
   ngOnInit() {
-    this.authService.checkToken();
     this.user$ = this.authService.currentUser;
     this.token = localStorage.getItem('token');
     this.accountNumber = localStorage.getItem('account');
@@ -29,8 +28,9 @@ export class ExtractComponent implements OnInit {
   extract() {
     this.extractService.getExtracts(this.accountNumber, this.token).subscribe((resp: any) => {
       const {response, message} = resp;
-      if(!response) {
+      if(response === false) {
         alert('Erro: ' + message);
+        return;
       }
       this.extractAccount = message;
       console.log(this.extractAccount);

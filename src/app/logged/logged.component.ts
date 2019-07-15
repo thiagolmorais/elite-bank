@@ -15,7 +15,6 @@ export class LoggedComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.checkToken();
     this.user$ = this.authService.currentUser;
   }
 

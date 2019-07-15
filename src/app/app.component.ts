@@ -12,10 +12,21 @@ export class AppComponent implements OnInit {
 
     user$: Observable<any>;
 
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService,
+                private router: Router) { }
 
     ngOnInit() {
-        this.authService.checkToken();
+        const token = localStorage.getItem('token');
+        const account = localStorage.getItem('account');
+    
+        if (!token || !account) {
+            localStorage.clear();
+            this.authService.setUser(null);
+            this.router.navigateByUrl('/login');
+            return;
+        }
+
+        this.authService.checkToken(account, token);
         this.user$ = this.authService.currentUser;
     }
 }
