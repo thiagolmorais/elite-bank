@@ -43,7 +43,7 @@ export class AuthService {
             }
     
             const { account, balance, name } = message;
-    
+            localStorage.setItem('balance', balance);
             this.setUser({
                 name: name,
                 balance: balance,

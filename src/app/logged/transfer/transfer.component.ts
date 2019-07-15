@@ -70,8 +70,7 @@ export class TransferComponent implements OnInit {
   }
 
   transfer() {
-    console.log(this.password, this.token, this.accountNumber, this.destAccount.account, this.transferValue)
-    this.transferService.transferValue(this.password, this.token, this.accountNumber, this.destAccount.account, this.transferValue).subscribe((resp: any) => {
+    this.transferService.transferValue(this.token, this.accountNumber, this.destAccount.account, this.transferValue).subscribe((resp: any) => {
       console.log(resp)
       const { message } = resp
       alert(message)
