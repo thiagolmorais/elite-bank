@@ -68,6 +68,16 @@
             // width: 65%;
             color: black;
             font-weight: bold;
+            .text-title {
+              font-weight: bold;
+            }
+            .text-info-container {
+              font-weight: lighter;
+              color: #000;
+              margin: 0px;
+              font-size: 14px;
+              line-height: 20px;
+            }
         }
     }
 }

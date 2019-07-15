@@ -16,7 +16,7 @@
             transition: all 200ms linear;
 
             .menu-responsive {
-                width: 40px;
+                width: 35px;
                 cursor: pointer;
                 display: none;
             }
@@ -34,7 +34,10 @@
     }
 
     > .user-info {
-        height: 200px;
+        height: 100px;
+        font-size: 14px;
+        color: #FFF;
+        border-bottom: 1px solid #FFF;
     }
 
     > .menu-links {
