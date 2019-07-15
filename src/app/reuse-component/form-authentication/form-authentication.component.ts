@@ -20,10 +20,9 @@ export class FormAuthenticationComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        console.log(this.logged);
         let minValue = 0;
         let maxValue = 9;
-        this.randomNumbers = generateKeyboardNumbers(minValue, maxValue);
+        this.randomNumbers = generateKeyboardNumbers(minValue, maxValue, 5);
     }
 
     addPasswordNumber(randomNumber: number) {
