@@ -6,75 +6,80 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { log } from 'util';
 import { Login } from 'src/model/login';
+import { ElementRef, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-transfer',
-  templateUrl: './transfer.component.html',
-  styleUrls: ['./transfer.component.css']
+    selector: 'app-transfer',
+    templateUrl: './transfer.component.html',
+    styleUrls: ['./transfer.component.css']
 })
 export class TransferComponent implements OnInit {
+    @ViewChild('closeBtn', { static: false }) closeBtn: ElementRef;
 
-  user$: Observable<any>;
+    user$: Observable<any>;
 
-  loginData: Login = { account: null, password: [] };
-  dataLoading: Boolean = false;
-  errorMessage: String = "";
-  
-  /*
-    TODO: Account será pego do login, tirar esse código após implementação do login
-  */
+    loginData: Login = { account: null, password: [] };
+    dataLoading: Boolean = false;
+    errorMessage: String = "";
 
-  accountNumber = null;
-  
-  balance = null;
+    /*
+      TODO: Account será pego do login, tirar esse código após implementação do login
+    */
 
-  destAccount: DestAccount = {
-    id: null,
-    account: null,
-    name: '',
-    email: ''
-  };
+    accountNumber = null;
 
-  destAccountNumber = null;
-  
-  transferValue = null;
+    balance = null;
 
-  token = null;
+    destAccount: DestAccount = {
+        id: null,
+        account: null,
+        name: '',
+        email: ''
+    };
 
-  password = null;
-  
-  constructor(private transferService: TransferService,
-    private authService: AuthService, 
-    private router: Router) { }
-  
+    destAccountNumber = null;
+
+    transferValue = null;
+
+    token = null;
+
+    password = null;
+
+    constructor(private transferService: TransferService,
+        private authService: AuthService,
+        private router: Router) { }
+
     ngOnInit() {
-      this.user$ = this.authService.currentUser;
-      this.accountNumber = parseInt(localStorage.getItem('account'))
-      this.token = localStorage.getItem('token')
-      this.balance = localStorage.getItem('balance')
-  }
-
-  checkDestAccount() {
-    if(this.accountNumber === this.destAccountNumber) {
-      alert('Não é possivel fazer uma tranferência em sua própria conta!')
-      return;
+        this.user$ = this.authService.currentUser;
+        this.accountNumber = parseInt(localStorage.getItem('account'))
+        this.token = localStorage.getItem('token')
+        this.balance = localStorage.getItem('balance')
     }
-    this.transferService.destAccount(this.destAccountNumber).subscribe((resp: any) => {
-      const { response, message } = resp
-      if(response) {
-        this.destAccount = message
-        return this.destAccount
-      }
-      return alert(message); 
-    });
-  }
 
-  transfer() {
-    this.transferService.transferValue(this.token, this.accountNumber, this.destAccount.account, this.transferValue).subscribe((resp: any) => {
-      console.log(resp)
-      const { message } = resp
-      alert(message)
-      return this.router.navigateByUrl('/extract'); 
-    });
-  }
+    checkDestAccount() {
+        if (this.accountNumber === this.destAccountNumber) {
+            alert('Não é possivel fazer uma tranferência em sua própria conta!')
+            return;
+        }
+        this.transferService.destAccount(this.destAccountNumber).subscribe((resp: any) => {
+            const { response, message } = resp
+            if (response) {
+                this.destAccount = message
+                return this.destAccount
+            }
+            return alert(message);
+        });
+    }
+
+    transfer() {
+        this.dataLoading = true;
+        this.closeBtn.nativeElement.click();
+        this.transferService.transferValue(this.token, this.accountNumber, this.destAccount.account, this.transferValue).subscribe((resp: any) => {
+            console.log(resp)
+            const { message } = resp
+            alert(message)
+            return this.router.navigateByUrl('/extract');
+        });
+        this.dataLoading = false;
+    }
 }

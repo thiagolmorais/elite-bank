@@ -14,11 +14,13 @@ export class FormAuthenticationComponent implements OnInit {
     @Input() loginData: Login;
     @Input() dataLoading: Boolean;
     @Input() errorMessage: String;
+    @Input() logged: Boolean = false;
     @Output() loginEvent = new EventEmitter<Login>();
 
     constructor() { }
 
     ngOnInit() {
+        console.log(this.logged);
         let minValue = 0;
         let maxValue = 9;
         this.randomNumbers = generateKeyboardNumbers(minValue, maxValue);
