@@ -1,6 +1,9 @@
-<nav class="menu">
+<nav class="menu" [ngClass]="{ active: active }">
     <div class="bank-name">
         EliteBanking
+        <div class="burguer-menu" [ngClass]="{ active: active }">
+            <img class="menu-responsive" src="{{imgSrc}}" alt="Close" (click)="menuResponsive()">
+        </div>
     </div>
     <div class="user-info">
         Olá, {{ (user$ | async)?.name }}

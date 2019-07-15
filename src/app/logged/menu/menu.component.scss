@@ -3,11 +3,28 @@
     width: 250px;
     margin-top: -70px;
     background-color: grey;
+    transition: all 200ms linear;
+    z-index: 1000;
 
     > .bank-name {
         height: 70px;
         background-color: orange;
         font-style: italic;
+
+        > .burguer-menu{
+            transform: translateX(110px);
+            transition: all 200ms linear;
+
+            .menu-responsive {
+                width: 40px;
+                cursor: pointer;
+                display: none;
+            }
+        }
+
+        > .burguer-menu.active {
+            transform: translateX(50px);
+        }
     }
 
     > .bank-name, .user-info {
@@ -32,6 +49,25 @@
         a {
             text-decoration: none;
             color: white;
+        }
+    }
+}
+
+.menu.active {
+    transform: translateX(0px);
+}
+
+@media screen and (max-width: 765px) {
+    .menu {
+        transform: translateX(-250px);
+        position: absolute;
+
+        > .bank-name {
+            > .burguer-menu{
+                .menu-responsive {
+                    display: block;
+                }
+            }
         }
     }
 }
