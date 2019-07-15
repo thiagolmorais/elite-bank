@@ -16,10 +16,9 @@ export const generateRandomNumber = (minValue: number, maxValue: number, notVali
     return notValidNumbers.includes(randomNumber) ? generateRandomNumber(minValue, maxValue, notValidNumbers) : randomNumber;
 };
 
-export const generateKeyboardNumbers = (minValue: number, maxValue: number): Array<number> => {
+export const generateKeyboardNumbers = (minValue: number, maxValue: number, keyboardLength: number): Array<number> => {
     let arrayReturn = [];
     let notValidNumbers = [];
-    let keyboardLength = 5;
 
     for (let x = 0; x < keyboardLength; x++) {
         let first = generateRandomNumber(minValue, maxValue, notValidNumbers);

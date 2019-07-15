@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Login } from 'src/model/login';
 import { generateKeyboardNumbers } from 'src/utils/utils';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'app-form-authentication',
@@ -8,12 +9,14 @@ import { generateKeyboardNumbers } from 'src/utils/utils';
     styleUrls: ['./form-authentication.component.scss']
 })
 export class FormAuthenticationComponent implements OnInit {
+    @ViewChild('formLogin', { static: false }) ngForm: NgForm;
 
     randomNumbers: Array<number> = [];
     password: String = "";
     @Input() loginData: Login;
     @Input() dataLoading: Boolean;
     @Input() errorMessage: String;
+    @Input() logged: Boolean = false;
     @Output() loginEvent = new EventEmitter<Login>();
 
     constructor() { }
@@ -21,7 +24,7 @@ export class FormAuthenticationComponent implements OnInit {
     ngOnInit() {
         let minValue = 0;
         let maxValue = 9;
-        this.randomNumbers = generateKeyboardNumbers(minValue, maxValue);
+        this.randomNumbers = generateKeyboardNumbers(minValue, maxValue, 5);
     }
 
     addPasswordNumber(randomNumber: number) {
