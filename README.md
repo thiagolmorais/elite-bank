@@ -4,28 +4,28 @@
 
 Site -> https://elite-bank.herokuapp.com/login
 
-### Configuração do ambiente
+## Configuração do ambiente
 
-- Instalação Node.js
+### Instalação Node.js
 https://nodejs.org/en/
 
-- Instalação Angular
+### Instalação Angular
 npm i -g @angular/cli
 
-- Instalação dependências do projeto
+### Instalação dependências do projeto
 * executar este comando dentro da pasta do projeto
 npm i  
 
-### Rodando o projeto
+## Rodando o projeto
 * executar este comando dentro da pasta do projeto
 
 ng serve --open
 
-### Rodando os testes
+## Rodando os testes
 
 ng test
 
-### Framework utilizados
+## Framework utilizados
 
 node -> v10.16.0 <br>
 angular -> v8.1.0
