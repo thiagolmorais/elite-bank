@@ -28,6 +28,7 @@ export class ExtractComponent implements OnInit {
 
   extract() {
     this.extractService.getExtracts(this.accountNumber, this.token).subscribe((resp: any) => {
+      console.log(resp)
       const {response, message} = resp;
       if(response === false) {
         alert('Erro: ' + message);
