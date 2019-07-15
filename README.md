@@ -13,11 +13,12 @@ https://nodejs.org/en/
 npm i -g @angular/cli
 
 ### Instalação dependências do projeto
-* executar este comando dentro da pasta do projeto
+Obs: executar este comando dentro da pasta do projeto
+
 npm i  
 
 ## Rodando o projeto
-* executar este comando dentro da pasta do projeto
+Obs: executar este comando dentro da pasta do projeto
 
 ng serve --open
 
