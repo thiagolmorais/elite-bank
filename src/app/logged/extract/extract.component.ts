@@ -15,6 +15,7 @@ export class ExtractComponent implements OnInit {
   accountNumber = null;
   token = null;
   extractAccount: Extract = null;
+  saldo: number = 0;
 
   constructor(private authService: AuthService, private extractService: ExtractService) { }
 
@@ -33,7 +34,14 @@ export class ExtractComponent implements OnInit {
         return;
       }
       this.extractAccount = message;
-      console.log(this.extractAccount);
+
+      for(let iterator of message) {
+        if(iterator.destination == this.accountNumber) {
+          this.saldo += parseInt(iterator.value);
+        } else {
+          this.saldo -= parseInt(iterator.value);
+        }
+      }
       
     });
   }
