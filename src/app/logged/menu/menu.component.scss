@@ -61,7 +61,15 @@
     .menu {
         transform: translateX(-250px);
         position: absolute;
-
+        &::after {
+            content: '';
+            width: 250px;
+            height: 400px;
+            position: absolute;
+            // bottom: -1000px;
+            background: gray;
+            z-index: -1;
+        }
         > .bank-name {
             > .burguer-menu{
                 .menu-responsive {
