@@ -16,15 +16,11 @@ const routes: Routes = [
     {
         path: '', component: LoggedComponent,
         children: [
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', canActivate: [AuthGuard], component: HomeComponent },
+            { path: '', redirectTo: 'extract', pathMatch: 'full' },
             { path: 'extract', canActivate: [AuthGuard], component: ExtractComponent },
             { path: 'transfer', canActivate: [AuthGuard], component: TransferComponent }
         ]
     },
-    // { path: 'extract', component: ExtractComponent },
-    // { path: 'home', component: HomeComponent },
-    // { path: 'transfer', component: TransferComponent },
 ];
 
 @NgModule({
