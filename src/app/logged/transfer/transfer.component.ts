@@ -74,7 +74,8 @@ export class TransferComponent implements OnInit {
     transfer() {
         this.dataLoading = true;
         this.closeBtn.nativeElement.click();
-        this.transferService.transferValue(this.token, this.accountNumber, this.destAccount.account, this.transferValue).subscribe((resp: any) => {
+        const { password } = this.loginData
+        this.transferService.transferValue(password, this.token, this.accountNumber, this.destAccount.account, this.transferValue).subscribe((resp: any) => {
             console.log(resp)
             const { message } = resp
             alert(message)
