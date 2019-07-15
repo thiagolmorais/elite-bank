@@ -46,7 +46,6 @@ export class TransferComponent implements OnInit {
     private router: Router) { }
   
     ngOnInit() {
-      this.authService.checkToken();
       this.user$ = this.authService.currentUser;
       this.accountNumber = localStorage.getItem('account')
       this.token = localStorage.getItem('token')

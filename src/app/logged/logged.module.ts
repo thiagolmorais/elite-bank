@@ -10,15 +10,16 @@ import { ExtractComponent } from './extract/extract.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { ReuseComponentModule } from '../reuse-component/reuse-component.module';
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
     {
         path: '', component: LoggedComponent,
         children: [
             { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', component: HomeComponent },
-            { path: 'extract', component: ExtractComponent },
-            { path: 'transfer', component: TransferComponent }
+            { path: 'home', canActivate: [AuthGuard], component: HomeComponent },
+            { path: 'extract', canActivate: [AuthGuard], component: ExtractComponent },
+            { path: 'transfer', canActivate: [AuthGuard], component: TransferComponent }
         ]
     },
     // { path: 'extract', component: ExtractComponent },

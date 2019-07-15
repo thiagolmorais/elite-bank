@@ -19,7 +19,6 @@ export class ExtractComponent implements OnInit {
   constructor(private authService: AuthService, private extractService: ExtractService) { }
 
   ngOnInit() {
-    this.authService.checkToken();
     this.user$ = this.authService.currentUser;
     this.token = localStorage.getItem('token');
     this.accountNumber = localStorage.getItem('account');
