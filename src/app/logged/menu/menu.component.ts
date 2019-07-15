@@ -9,6 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class MenuComponent implements OnInit {
 
+    imgSrc = '../../../assets/img/menu.png';
+    active: Boolean = false;
+
     user$: Observable<any>;
 
     menuLinks: Array<any> = [
@@ -27,4 +30,12 @@ export class MenuComponent implements OnInit {
         this.authService.logout();
     }
 
+    menuResponsive() {
+        this.active = !this.active;
+        if (this.active) {
+            this.imgSrc = '../../../assets/img/close.png';
+        } else {
+            this.imgSrc = '../../../assets/img/menu.png';
+        }
+    }
 }
