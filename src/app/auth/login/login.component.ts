@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
 
                 localStorage.setItem('token', userToken);
                 localStorage.setItem('account', account);
+                localStorage.setItem('balance', balance);
 
                 this.authService.setUser({
                     balance: balance,

@@ -25,6 +25,8 @@ export class TransferComponent implements OnInit {
   */
 
   accountNumber = null;
+  
+  balance = null;
 
   destAccount: DestAccount = {
     id: null,
@@ -48,8 +50,9 @@ export class TransferComponent implements OnInit {
     ngOnInit() {
       this.authService.checkToken();
       this.user$ = this.authService.currentUser;
-      this.accountNumber = localStorage.getItem('account')
+      this.accountNumber = parseInt(localStorage.getItem('account'))
       this.token = localStorage.getItem('token')
+      this.balance = localStorage.getItem('balance')
   }
 
   checkDestAccount() {
@@ -68,7 +71,9 @@ export class TransferComponent implements OnInit {
   }
 
   transfer() {
+    console.log(this.password, this.token, this.accountNumber, this.destAccount.account, this.transferValue)
     this.transferService.transferValue(this.password, this.token, this.accountNumber, this.destAccount.account, this.transferValue).subscribe((resp: any) => {
+      console.log(resp)
       const { message } = resp
       alert(message)
       return this.router.navigateByUrl('/extract'); 
