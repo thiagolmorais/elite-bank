@@ -1,7 +1,7 @@
 .header {
-    height: 10%;
+    height: 100px;
+    background-color: #8d6816ad;
     display: flex;
-    // width: 1200px;
     justify-content: center;
     align-items: center;
 
@@ -40,9 +40,9 @@
     }
 }
 
-@media screen and (max-height: 530px), screen and (max-width: 1000px) {
-    .header {
-        margin-bottom: 20px;
-        height: 120px;
-    }
-}
+// @media screen and (max-height: 530px), screen and (max-width: 1000px) {
+//     .header {
+//         margin-bottom: 20px;
+//         height: 120px;
+//     }
+// }

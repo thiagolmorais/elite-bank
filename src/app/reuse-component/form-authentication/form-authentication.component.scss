@@ -1,0 +1,103 @@
+.form-login {
+    padding: 10px 22px;
+
+    .alert {
+        margin-top: -30px;
+    }
+    
+    .form-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .icon {
+        display: block;
+        position: absolute;
+        text-indent: -9999px;
+        height: 15px;
+        // cursor: pointer;
+        opacity: 0.5;
+        float: right;
+        right: 0;
+        z-index: 3;
+        transition: opacity 200ms linear;
+        transform: translateY(75%) translateX(-100%);
+    }
+    
+    .bank-input {
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid #948f8f;
+    }
+    
+    input {
+        border-color: none !important;
+        outline: 0;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+    
+    .control-numbers {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .numbers {
+        width: 90px;
+        height: 45px;
+        margin: 0px 0px 12px 0px;
+    }
+    
+    .btn {
+        width: 100%;
+        height: 100%;
+        transition: all 100ms linear;
+    }
+    
+    .btn:active {
+        transform: scale(.9);
+    }
+
+    .btnDelete {
+        background-color: red;
+        border-color: red;
+    }
+    
+    .btnSubmit {
+        background-color: green;
+        border-color: green;
+    }
+
+    .forgot-password {
+        width: 64.5%;
+    }
+
+    .submit-number {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    input:read-only {
+        background-color: inherit;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .control-numbers {
+        width: 100%;
+    
+        .numbers {
+            width: 30%;
+        }
+    }
+    
+    .submit-number {
+        flex-direction: column;
+    
+        > .numbers {
+            width: 100%;
+        }
+    }
+}

@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { DigitOnlyDirective } from '../../directives/digit-only.directive';
+import { ReuseComponentModule } from '../reuse-component/reuse-component.module';
 
 const routes: Routes = [
     { path: '', component: LoginComponent },
@@ -15,12 +15,12 @@ const routes: Routes = [
     declarations: [
         LoginComponent,
         HeaderComponent,
-        FooterComponent,
-        DigitOnlyDirective
+        FooterComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
+        ReuseComponentModule,
         RouterModule.forChild(routes)
     ]
 })

@@ -1,210 +1,93 @@
-.image-container {
-    height: 100%;
-    background: url(https://media.brstatic.com/2018/03/12103326/want-save-money-on-paper-checks-skip-bank.jpg) no-repeat center top fixed;
-    // https://ix-cdn.brightedge.com/images/43431/43431_1e46749714f941a2a8eb326fa1ab7439_1505352510.jpg
-    // https://backgrounddownload.com/wp-content/uploads/2018/09/banking-background-images-1.jpg
-    background-size: cover;
-    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.2);
+.login-wrapper {
     overflow-x: hidden;
-}
 
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80%;
-
-    > .content-container {
+    > .login-container {
         display: flex;
-        width: 1200px;
-        justify-content: space-between;
-        padding-left: 70px;
-        padding-right: 70px;
-        // align-items: flex-start;
-
-        > .info-container {
-            text-align: justify;
-            padding: 10px;
-            box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.3);
-            width: 65%;
-            color: black;
-            // text-shadow: 1px 0px 0px #000;
-            font-weight: bold;
-            margin-right: 20px;
-            // max-height: 100%;
-        }
-
-        > .form-container {
-            width: 350px;
-            // height: 350px;
-            box-shadow: 1px 1px 12px 0px #888888;
-            background-color: white;
-
-            .div-navbar {
-                width: 50%;
-                display: flex;
-                justify-content: center;
-                padding: .5rem 1rem;
-            }
-            
-            .div-navbar.-active {
-                background-color: white;
-            }
-
-            .navbar {
-                padding: 0px;
-                margin-bottom: 30px;
-            }
-
-            .form-login {
-                padding: 10px 22px;
-            }
-
-            .alert {
-                margin-top: -30px;
-            }
-            
-            .form-group {
-                display: flex;
-                align-items: center;
-            }
-
-            .icon {
-                display: block;
-                position: absolute;
-                text-indent: -9999px;
-                height: 15px;
-                // cursor: pointer;
-                opacity: 0.5;
-                float: right;
-                right: 0;
-                z-index: 3;
-                transition: opacity 200ms linear;
-                transform: translateY(75%) translateX(-100%);
-            }
-            
-            .bank-input {
-                border-radius: 0;
-                border: none;
-                border-bottom: 1px solid #948f8f;
-            }
-            
-            input {
-                border-color: none !important;
-                outline: 0;
-                -webkit-box-shadow: none !important;
-                box-shadow: none !important;
-            }
-            
-            .control-numbers {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-            }
-            
-            .numbers {
-                width: 90px;
-                height: 45px;
-                margin: 0px 0px 12px 0px;
-            }
-            
-            .btn {
-                width: 100%;
-                height: 100%;
-                transition: all 100ms linear;
-            }
-            
-            .btn:active {
-                transform: scale(.9);
-            }
-
-            .btnDelete {
-                background-color: red;
-                border-color: red;
-            }
-            
-            .btnSubmit {
-                background-color: green;
-                border-color: green;
-            }
-
-            .forgot-password {
-                width: 64.5%;
-            }
-
-            .submit-number {
-                display: flex;
-                width: 100%;
-                justify-content: space-between;
-            }
-        }
-    }
-}
-
-input:read-only {
-    background-color: inherit;
-}
-
-@media screen and (max-width: 1000px) {
-    .image-container {
-        height: initial;
-    }
-    .login-container {
-        height: initial;
+        justify-content: center;
+        align-items: center;
+        background: url('../../../assets/img/LoginImage.jpg') no-repeat center top fixed;
+        background-size: cover;
+        box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.2);
+    
         > .content-container {
-            flex-direction: column-reverse;
-
+            display: flex;
+            width: 1200px;
+            justify-content: flex-end;
+            padding-left: 70px;
+            padding-right: 70px;
+            padding-top: 25px;
+            padding-bottom: 25px;
+    
             > .form-container {
-                width: 100%;
-
-                .control-numbers {
+                width: 350px;
+                box-shadow: 1px 1px 12px 0px #888888;
+                background-color: white;
+    
+                .div-navbar {
                     width: 100%;
-
-                    .numbers {
-                        width: 30%;
-                    }
+                    display: flex;
+                    justify-content: center;
+                    padding: .5rem 1rem;
                 }
-
-                .submit-number {
-                    flex-direction: column;
-
-                    > .numbers {
-                        width: 100%;
-                    }
+                
+                .navbar-brand {
+                    margin-right: 0;
                 }
-            }
-
-            > .info-container {
-                width: 100%;
-                margin-right: 0;
-                margin-top: 20px;
+    
+                .div-navbar.-active {
+                    background-color: white;
+                }
+    
+                .navbar {
+                    padding: 0px;
+                    margin-bottom: 30px;
+                }
             }
         }
-
     }
 
+    > .info-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: #f2dba3;
+        
+        > .info-content {
+            width: 1200px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 10px;
+            text-align: justify;
+            box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.3);
+            // width: 65%;
+            color: black;
+            font-weight: bold;
+        }
+    }
 }
-
-@media screen and (max-width: 540px) {
-    .login-container {
-        .content-container {
+@media screen and (max-width: 1200px) {
+    .login-wrapper {
+        > .info-container {
             padding-left: 20px;
             padding-right: 20px;
+            > .info-content {
+                width: 100%;
+            }
         }
     }
 }
+@media screen and (max-width: 600px) {
+    .login-wrapper {
+        .login-container {
+            .content-container {
+                padding-left: 20px;
+                padding-right: 20px;
 
-@media screen and (max-height: 600px) {
-    .image-container {
-        overflow-y: auto;
-    }
-}
-
-@media screen and (max-height: 530px) {
-    .image-container {
-        height: initial;
-    }
-    .login-container {
-        height: initial;
+                .form-container {
+                    width: 100%;
+                }
+            }
+        }
     }
 }
