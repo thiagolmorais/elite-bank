@@ -8,7 +8,7 @@
 
     > .bank-name {
         height: 70px;
-        background-color: orange;
+        background-color: #20bea0ff;
         font-style: italic;
 
         > .burguer-menu{
@@ -30,7 +30,7 @@
     > .bank-name, .user-info {
         display: flex;
         justify-content: center;
-        align-items: center; 
+        align-items: center;
     }
 
     > .user-info {
@@ -45,7 +45,7 @@
         .item-link:hover {
             background-color: #ffffff6e;
         }
-        
+
         a {
             text-decoration: none;
             color: white;
