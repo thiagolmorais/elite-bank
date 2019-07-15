@@ -15,7 +15,6 @@ export class MenuComponent implements OnInit {
     user$: Observable<any>;
 
     menuLinks: Array<any> = [
-        { name: "Home", route: "/home" },
         { name: "Transferência", route: "/transfer" },
         { name: "Extrato", route: "/extract" }
     ];
