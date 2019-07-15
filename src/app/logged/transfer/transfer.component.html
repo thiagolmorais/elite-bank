@@ -28,21 +28,22 @@
             <h3>
               Saldo Atual
             </h3>
-            <div class="price text-right">R$ 1,800,000</div>
+            <div class="price text-right">{{ this.balance | currency }}</div>
           </div>
         </div>
         <div class="col-md-8 col-sm-12">
-        <form>
+        <form #form="ngForm">
           <div class="card-details">
             <h3 class="title">Elite Bank - Transferencias</h3>
             <div class="row">
               <div class="form-group col-sm-12">
                 <label for="card-number">Número da Conta:</label>
-                <input id="card-number" type="text" class="form-control" placeholder="0000000" aria-label="Inserir nome" aria-describedby="basic-addon1">
+                <input (focusout)="checkDestAccount()" [(ngModel)]="destAccountNumber" name="destAccountNumber" id="card-number" type="text" class="form-control" placeholder="0000000" aria-label="Inserir nome" aria-describedby="basic-addon1">
+                <div *ngIf="this.destAccount.account">Destinatário: {{ (this.destAccount.name) }}</div>
               </div>
               <div class="form-group col-sm-7">
                 <label for="teste">Valor</label>
-                <input id="card-number" type="text" class="form-control" placeholder="R$000,00" aria-label="Card Holder" aria-describedby="basic-addon1">
+                <input [(ngModel)]="transferValue" name="transferValue" id="card-number" type="text" class="form-control" placeholder="R$000,00" aria-label="Card Holder" aria-describedby="basic-addon1">
               </div>
               <div class="form-group col-sm-5">
                 <label for="cvv">Banco</label>
@@ -51,7 +52,7 @@
                 </select>
               </div>
               <div class="form-group col-sm-12">
-                <button type="button" class="btn btn-primary btn-block">Enviar</button>
+                <button (click)="transfer()" type="button" class="btn btn-primary btn-block">Enviar</button>
               </div>
             </div>
           </div>
